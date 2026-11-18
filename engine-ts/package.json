@@ -1,0 +1,20 @@
+{
+  "name": "carbon-credit-engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TypeScript port of the carbon-credit route engine interpreter. The Python engine (../engine) is the reference.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "parity": "node src/cli/parity.ts && node src/cli/calcParity.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.2.0"
+  }
+}

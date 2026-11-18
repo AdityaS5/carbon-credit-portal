@@ -1,0 +1,5111 @@
+[
+ {
+  "condition_id": "VCS_VMR0017_v1.0_C01",
+  "methodology_id": "VCS_VMR0017_v1.0",
+  "text": "Grid-connected renewable power: a greenfield plant, or a retrofit, rehabilitation, replacement or capacity addition of an existing plant",
+  "type": "hard",
+  "profile_field": "grid_connected",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Is the project connected to the electricity grid?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "2",
+   "quote": "This methodology applies to grid-connected renewable energy generation project activities that include",
+   "doc": "VCS_ACM0002_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "VCS_ACM0002_v22_C01",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 2 (scope): grid-connected plants only."
+ },
+ {
+  "condition_id": "VCS_VMR0017_v1.0_C02",
+  "methodology_id": "VCS_VMR0017_v1.0",
+  "text": "For capacity additions, retrofits, rehabilitations or replacements (except wind, solar, wave or tidal capacity additions): the existing plant started commercial operation before a 5-year historical reference period, with no expansion/retrofit since",
+  "type": "hard",
+  "profile_field": "project_activity_type",
+  "secondary_fields": [
+   "technology",
+   "existing_plant_5y"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "project_activity_type",
+     "operator": "in",
+     "value": [
+      "greenfield"
+     ]
+    },
+    {
+     "operator": "all_of",
+     "value": [
+      {
+       "field": "technology",
+       "operator": "in",
+       "value": [
+        "wind_onshore",
+        "wind_offshore",
+        "solar_pv"
+       ]
+      },
+      {
+       "field": "project_activity_type",
+       "operator": "in",
+       "value": [
+        "capacity_addition"
+       ]
+      }
+     ]
+    },
+    {
+     "field": "existing_plant_5y",
+     "operator": "is_true"
+    }
+   ]
+  },
+  "question": {
+   "text": "Is this a new plant, an addition to an existing plant, or an upgrade/rehabilitation/replacement of existing equipment?",
+   "answer_type": "single_select",
+   "options": [
+    "greenfield",
+    "capacity_addition",
+    "retrofit",
+    "rehabilitation",
+    "replacement"
+   ]
+  },
+  "source": {
+   "page": 5,
+   "para": "8(b)",
+   "quote": "the existing plant/unit must have started commercial operation prior to the start of a minimum historical reference period of five years",
+   "doc": "VCS_ACM0002_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "VCS_ACM0002_v22_C03",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 8(b): greenfield plants and wind/solar capacity additions are exempt; otherwise 5 years of operation with no expansion/retrofit. Wave/tidal are not UI technologies."
+ },
+ {
+  "condition_id": "VCS_VMR0017_v1.0_C03",
+  "methodology_id": "VCS_VMR0017_v1.0",
+  "text": "Battery storage is allowed with a greenfield plant (any technology), or with capacity additions/retrofits of existing solar PV or wind only (Table 2)",
+  "type": "hard",
+  "profile_field": "has_storage",
+  "secondary_fields": [
+   "project_activity_type",
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "has_storage",
+     "operator": "is_false"
+    },
+    {
+     "field": "project_activity_type",
+     "operator": "in",
+     "value": [
+      "greenfield"
+     ]
+    },
+    {
+     "operator": "all_of",
+     "value": [
+      {
+       "field": "technology",
+       "operator": "in",
+       "value": [
+        "solar_pv",
+        "wind_onshore",
+        "wind_offshore"
+       ]
+      },
+      {
+       "field": "project_activity_type",
+       "operator": "in",
+       "value": [
+        "capacity_addition",
+        "retrofit"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "Does the project include battery or other energy storage?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "7, Table 2",
+   "quote": "Combinations of renewable energy technologies and mode of BESS applicable for integration",
+   "doc": "VCS_ACM0002_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "VCS_ACM0002_v22_C04",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 Table 2: greenfield + BESS eligible for all technologies; capacity addition/retrofit + BESS for solar PV or wind only; rehabilitation/replacement + BESS not listed, so not eligible."
+ },
+ {
+  "condition_id": "VCS_VMR0017_v1.0_C04",
+  "methodology_id": "VCS_VMR0017_v1.0",
+  "text": "Hydro: existing reservoir with no volume change, or enlarged/new reservoir with power density above 4 W/m2",
+  "type": "hard",
+  "profile_field": "hydro_reservoir",
+  "secondary_fields": [
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "technology",
+     "operator": "not_in",
+     "value": [
+      "hydro"
+     ]
+    },
+    {
+     "field": "hydro_reservoir",
+     "operator": "in",
+     "value": [
+      "run_of_river",
+      "existing_no_volume_change",
+      "existing_enlarged_pd_gt_4",
+      "new_reservoir_pd_gt_4"
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "(Hydro only) Which describes the reservoir? 'pd' = installed watts per m2 of reservoir surface.",
+   "answer_type": "single_select",
+   "options": [
+    "run_of_river",
+    "existing_no_volume_change",
+    "existing_enlarged_pd_gt_4",
+    "new_reservoir_pd_gt_4",
+    "pd_le_4"
+   ]
+  },
+  "source": {
+   "page": 6,
+   "para": "9",
+   "quote": "The project activity is implemented in existing single or multiple reservoirs, with no change in the volume of any of the reservoirs",
+   "doc": "VCS_ACM0002_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "VCS_ACM0002_v22_C05",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.6 para 9(a)-(c): any_of passes non-hydro projects; integrated multi-reservoir hydro (9(d)) is not modelled, so pd_le_4 fails."
+ },
+ {
+  "condition_id": "VCS_VMR0017_v1.0_C05",
+  "methodology_id": "VCS_VMR0017_v1.0",
+  "text": "Not applicable to switching from fossil fuels to renewables at the project site (e.g. replacing a captive diesel/coal plant)",
+  "type": "hard",
+  "profile_field": "baseline",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "grid"
+   ]
+  },
+  "question": {
+   "text": "What does the project replace, or what would have happened without it?",
+   "answer_type": "single_select",
+   "options": [
+    "grid",
+    "captive_fossil",
+    "vented",
+    "flared_partly",
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel",
+    "degraded",
+    "cropland",
+    "grassland",
+    "forest",
+    "old_equipment",
+    "coal",
+    "oil",
+    "grid_power"
+   ]
+  },
+  "source": {
+   "page": 7,
+   "para": "12(a)",
+   "quote": "Project activities that involve switching from fossil fuels to renewable energy sources at the site of the project activity",
+   "doc": "VCS_ACM0002_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "VCS_ACM0002_v22_C06",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.7 para 12(a). UI baseline 'captive_fossil' (replacing a captive diesel/coal plant) is the on-site switch excluded here."
+ },
+ {
+  "condition_id": "VCS_VMR0017_v1.0_C06",
+  "methodology_id": "VCS_VMR0017_v1.0",
+  "text": "Technology and geography per VMR0017 Table 1: wind (onshore/offshore), geothermal and terrestrial solar PV in low-, lower-middle- and upper-middle-income countries (India qualifies as lower-middle income); hydro only in LDCs and <= 15 MW, so not India",
+  "type": "hard",
+  "profile_field": "technology",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "solar_pv",
+    "wind_onshore",
+    "wind_offshore",
+    "geothermal"
+   ]
+  },
+  "question": {
+   "text": "What technology does the project use?",
+   "answer_type": "single_select",
+   "options": [
+    "solar_pv",
+    "wind_onshore",
+    "wind_offshore",
+    "geothermal",
+    "hydro",
+    "lfg_capture",
+    "household_biogas",
+    "farm_digester",
+    "centralised_digester",
+    "plantation",
+    "mangrove",
+    "efficient_equipment",
+    "fuel_switch",
+    "renewable_heat",
+    "waste_heat"
+   ]
+  },
+  "source": {
+   "page": 5,
+   "para": "8(a)",
+   "quote": "Low-, lower middle- , upper middle- income countries only",
+   "doc": "VCS_VMR0017_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 §4 Table 1. India is lower-middle income (World Bank group, reclassified each 1 July: re-check yearly) and not an LDC, so hydro fails. Floating solar/wave/tidal are global but not offered as UI technologies."
+ },
+ {
+  "condition_id": "VCS_VMR0017_v1.0_C07",
+  "methodology_id": "VCS_VMR0017_v1.0",
+  "text": "If storage is included: BESS and plant on the same site, directly connected, sharing one grid connection, same owner and same investment decision",
+  "type": "hard",
+  "profile_field": "has_storage",
+  "secondary_fields": [
+   "bess_same_site"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "has_storage",
+     "operator": "is_false"
+    },
+    {
+     "field": "bess_same_site",
+     "operator": "is_true"
+    }
+   ]
+  },
+  "question": {
+   "text": "Does the project include battery or other energy storage?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 6,
+   "para": "8(f)",
+   "quote": "the BESS and the power plant are located on the same site",
+   "doc": "VCS_VMR0017_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.6 para 8(f)(i)-(iii): same site, direct connection and single grid connection, same owner and investment decision; bess_same_site asks all of these in one question."
+ },
+ {
+  "condition_id": "VCS_VMR0017_v1.0_C08",
+  "methodology_id": "VCS_VMR0017_v1.0",
+  "text": "Regulatory surplus: the project is not required by law or regulation",
+  "type": "hard",
+  "profile_field": "legally_required",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is the project required by any law, regulation, court order or permit condition?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 8,
+   "para": "7, 36(a)",
+   "quote": "Regulatory surplus must be demonstrated in accordance with the rules and requirements regarding regulatory surplus",
+   "doc": "VCS_VMR0017_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.8 para 36(a): additionality step (a) is regulatory surplus."
+ },
+ {
+  "condition_id": "VCS_VMR0017_v1.0_X01",
+  "methodology_id": "VCS_VMR0017_v1.0",
+  "text": "No double claiming: the same output must not also earn GHG-related environmental credits for the same period (whether Indian RECs count depends on the VCS Program Definitions, not in the repo)",
+  "type": "soft",
+  "profile_field": "receives_recs",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Does the project receive Renewable Energy Certificates (RECs) or other environmental attributes for the same output?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "doc": "VCS-Standard-v5.0",
+   "page": 73,
+   "para": "3.22.5",
+   "quote": "Project proponents shall not seek credit for reductions and removals wi th the VCS Program which are receiving or seeking GHG-related credit for the same proje ct activity and time period"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "PDF p.73 §3.22.5. Soft: a project selling RECs gets a warning to confirm with Verra whether RECs count as a GHG-related environmental credit (VCS Program Definitions, not in repo); it is not excluded."
+ },
+ {
+  "condition_id": "VCS_ACM0002_v22_C01",
+  "methodology_id": "VCS_ACM0002_v22",
+  "text": "Grid-connected renewable power: a greenfield plant, or a retrofit, rehabilitation, replacement or capacity addition of an existing plant",
+  "type": "hard",
+  "profile_field": "grid_connected",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Is the project connected to the electricity grid?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "2",
+   "quote": "This methodology applies to grid-connected renewable energy generation project activities that include",
+   "doc": "VCS_ACM0002_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 2 (scope): grid-connected plants only."
+ },
+ {
+  "condition_id": "VCS_ACM0002_v22_C02",
+  "methodology_id": "VCS_ACM0002_v22",
+  "text": "Technology is hydro, wind, geothermal, solar, wave or tidal",
+  "type": "hard",
+  "profile_field": "technology",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "hydro",
+    "wind_onshore",
+    "wind_offshore",
+    "geothermal",
+    "solar_pv"
+   ]
+  },
+  "question": {
+   "text": "What technology does the project use?",
+   "answer_type": "single_select",
+   "options": [
+    "solar_pv",
+    "wind_onshore",
+    "wind_offshore",
+    "geothermal",
+    "hydro",
+    "lfg_capture",
+    "household_biogas",
+    "farm_digester",
+    "centralised_digester",
+    "plantation",
+    "mangrove",
+    "efficient_equipment",
+    "fuel_switch",
+    "renewable_heat",
+    "waste_heat"
+   ]
+  },
+  "source": {
+   "page": 5,
+   "para": "8(a)",
+   "quote": "Hydro power plant/unit with or without reservoir, wind power plant/unit, geothermal power plant/unit, solar power plant/unit, wave power plant/unit or tidal power plant/unit",
+   "doc": "VCS_ACM0002_v22"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "VCS_ACM0002_v22_C03",
+  "methodology_id": "VCS_ACM0002_v22",
+  "text": "For capacity additions, retrofits, rehabilitations or replacements (except wind, solar, wave or tidal capacity additions): the existing plant started commercial operation before a 5-year historical reference period, with no expansion/retrofit since",
+  "type": "hard",
+  "profile_field": "project_activity_type",
+  "secondary_fields": [
+   "technology",
+   "existing_plant_5y"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "project_activity_type",
+     "operator": "in",
+     "value": [
+      "greenfield"
+     ]
+    },
+    {
+     "operator": "all_of",
+     "value": [
+      {
+       "field": "technology",
+       "operator": "in",
+       "value": [
+        "wind_onshore",
+        "wind_offshore",
+        "solar_pv"
+       ]
+      },
+      {
+       "field": "project_activity_type",
+       "operator": "in",
+       "value": [
+        "capacity_addition"
+       ]
+      }
+     ]
+    },
+    {
+     "field": "existing_plant_5y",
+     "operator": "is_true"
+    }
+   ]
+  },
+  "question": {
+   "text": "Is this a new plant, an addition to an existing plant, or an upgrade/rehabilitation/replacement of existing equipment?",
+   "answer_type": "single_select",
+   "options": [
+    "greenfield",
+    "capacity_addition",
+    "retrofit",
+    "rehabilitation",
+    "replacement"
+   ]
+  },
+  "source": {
+   "page": 5,
+   "para": "8(b)",
+   "quote": "the existing plant/unit must have started commercial operation prior to the start of a minimum historical reference period of five years",
+   "doc": "VCS_ACM0002_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 8(b): greenfield plants and wind/solar capacity additions are exempt; otherwise 5 years of operation with no expansion/retrofit. Wave/tidal are not UI technologies."
+ },
+ {
+  "condition_id": "VCS_ACM0002_v22_C04",
+  "methodology_id": "VCS_ACM0002_v22",
+  "text": "Battery storage is allowed with a greenfield plant (any technology), or with capacity additions/retrofits of existing solar PV or wind only (Table 2)",
+  "type": "hard",
+  "profile_field": "has_storage",
+  "secondary_fields": [
+   "project_activity_type",
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "has_storage",
+     "operator": "is_false"
+    },
+    {
+     "field": "project_activity_type",
+     "operator": "in",
+     "value": [
+      "greenfield"
+     ]
+    },
+    {
+     "operator": "all_of",
+     "value": [
+      {
+       "field": "technology",
+       "operator": "in",
+       "value": [
+        "solar_pv",
+        "wind_onshore",
+        "wind_offshore"
+       ]
+      },
+      {
+       "field": "project_activity_type",
+       "operator": "in",
+       "value": [
+        "capacity_addition",
+        "retrofit"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "Does the project include battery or other energy storage?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "7, Table 2",
+   "quote": "Combinations of renewable energy technologies and mode of BESS applicable for integration",
+   "doc": "VCS_ACM0002_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 Table 2: greenfield + BESS eligible for all technologies; capacity addition/retrofit + BESS for solar PV or wind only; rehabilitation/replacement + BESS not listed, so not eligible."
+ },
+ {
+  "condition_id": "VCS_ACM0002_v22_C05",
+  "methodology_id": "VCS_ACM0002_v22",
+  "text": "Hydro: existing reservoir with no volume change, or enlarged/new reservoir with power density above 4 W/m2",
+  "type": "hard",
+  "profile_field": "hydro_reservoir",
+  "secondary_fields": [
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "technology",
+     "operator": "not_in",
+     "value": [
+      "hydro"
+     ]
+    },
+    {
+     "field": "hydro_reservoir",
+     "operator": "in",
+     "value": [
+      "run_of_river",
+      "existing_no_volume_change",
+      "existing_enlarged_pd_gt_4",
+      "new_reservoir_pd_gt_4"
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "(Hydro only) Which describes the reservoir? 'pd' = installed watts per m2 of reservoir surface.",
+   "answer_type": "single_select",
+   "options": [
+    "run_of_river",
+    "existing_no_volume_change",
+    "existing_enlarged_pd_gt_4",
+    "new_reservoir_pd_gt_4",
+    "pd_le_4"
+   ]
+  },
+  "source": {
+   "page": 6,
+   "para": "9",
+   "quote": "The project activity is implemented in existing single or multiple reservoirs, with no change in the volume of any of the reservoirs",
+   "doc": "VCS_ACM0002_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.6 para 9(a)-(c): any_of passes non-hydro projects; integrated multi-reservoir hydro (9(d)) is not modelled, so pd_le_4 fails."
+ },
+ {
+  "condition_id": "VCS_ACM0002_v22_C06",
+  "methodology_id": "VCS_ACM0002_v22",
+  "text": "Not applicable to switching from fossil fuels to renewables at the project site (e.g. replacing a captive diesel/coal plant)",
+  "type": "hard",
+  "profile_field": "baseline",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "grid"
+   ]
+  },
+  "question": {
+   "text": "What does the project replace, or what would have happened without it?",
+   "answer_type": "single_select",
+   "options": [
+    "grid",
+    "captive_fossil",
+    "vented",
+    "flared_partly",
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel",
+    "degraded",
+    "cropland",
+    "grassland",
+    "forest",
+    "old_equipment",
+    "coal",
+    "oil",
+    "grid_power"
+   ]
+  },
+  "source": {
+   "page": 7,
+   "para": "12(a)",
+   "quote": "Project activities that involve switching from fossil fuels to renewable energy sources at the site of the project activity",
+   "doc": "VCS_ACM0002_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.7 para 12(a). UI baseline 'captive_fossil' (replacing a captive diesel/coal plant) is the on-site switch excluded here."
+ },
+ {
+  "condition_id": "VCS_ACM0002_v22_X01",
+  "methodology_id": "VCS_ACM0002_v22",
+  "text": "VCS Table 1 rows 1-2: grid-connected hydro, wind, geothermal and terrestrial solar PV are eligible by default only in LDCs (India is not an LDC), unless the methodology sets its own geography (VMR0017 does)",
+  "type": "hard",
+  "profile_field": null,
+  "secondary_fields": [],
+  "rule": null,
+  "question": null,
+  "source": {
+   "doc": "VCS-Standard-v5.0",
+   "page": 9,
+   "para": "2.1.1, Table 1 rows 1-2",
+   "quote": "Grid-connected electricity generation using wind, geothermal, or terrestrial solar photovoltaic (PV) power plants"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-003_v01.0_C01",
+  "methodology_id": "GS_A6.4-AMM-003_v01.0",
+  "text": "Greenfield renewable power plant that feeds all net electricity into the grid (no capacity additions, retrofits or replacements)",
+  "type": "hard",
+  "profile_field": "project_activity_type",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "greenfield"
+   ]
+  },
+  "question": {
+   "text": "Is this a new plant, an addition to an existing plant, or an upgrade/rehabilitation/replacement of existing equipment?",
+   "answer_type": "single_select",
+   "options": [
+    "greenfield",
+    "capacity_addition",
+    "retrofit",
+    "rehabilitation",
+    "replacement"
+   ]
+  },
+  "source": {
+   "page": 7,
+   "para": "12",
+   "quote": "install a greenfield power plant that generates electricity from renewable sources and feeds all the net electricity generated into an electricity system",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": "PACM_A6.4-AMM-003_v01.0_C01",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-003_v01.0_C02",
+  "methodology_id": "GS_A6.4-AMM-003_v01.0",
+  "text": "Technology is hydro, wind, solar PV, solar thermal or geothermal",
+  "type": "hard",
+  "profile_field": "technology",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "hydro",
+    "wind_onshore",
+    "wind_offshore",
+    "geothermal",
+    "solar_pv"
+   ]
+  },
+  "question": {
+   "text": "What technology does the project use?",
+   "answer_type": "single_select",
+   "options": [
+    "solar_pv",
+    "wind_onshore",
+    "wind_offshore",
+    "geothermal",
+    "hydro",
+    "lfg_capture",
+    "household_biogas",
+    "farm_digester",
+    "centralised_digester",
+    "plantation",
+    "mangrove",
+    "efficient_equipment",
+    "fuel_switch",
+    "renewable_heat",
+    "waste_heat"
+   ]
+  },
+  "source": {
+   "page": 7,
+   "para": "13",
+   "quote": "The types of renewable energy power plants eligible under this mechanism methodology are hydropower plants, wind power plants, solar photovoltaic power plants, solar thermal power plants, and geothermal power plants",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": "PACM_A6.4-AMM-003_v01.0_C02",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-003_v01.0_C03",
+  "methodology_id": "GS_A6.4-AMM-003_v01.0",
+  "text": "If storage is included: BESS on the same site, charged only by the project plant, installed before the project meter",
+  "type": "hard",
+  "profile_field": "has_storage",
+  "secondary_fields": [],
+  "rule": null,
+  "question": {
+   "text": "Does the project include battery or other energy storage?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 7,
+   "para": "14",
+   "quote": "Solely charged with electricity provided by the Article 6.4 renewable power generation plant",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "Project includes battery storage",
+  "inherits": "PACM_A6.4-AMM-003_v01.0_C03",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-003_v01.0_C04",
+  "methodology_id": "GS_A6.4-AMM-003_v01.0",
+  "text": "Hydro: run-of-river (storage <= 24 h, residence < 2 days, no flooding of forest/peat) or an existing reservoir (10+ years old, no volume increase, no loss of irrigation water)",
+  "type": "hard",
+  "profile_field": "hydro_reservoir",
+  "secondary_fields": [
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "technology",
+     "operator": "not_in",
+     "value": [
+      "hydro"
+     ]
+    },
+    {
+     "field": "hydro_reservoir",
+     "operator": "in",
+     "value": [
+      "run_of_river",
+      "existing_no_volume_change"
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "(Hydro only) Which describes the reservoir? 'pd' = installed watts per m2 of reservoir surface.",
+   "answer_type": "single_select",
+   "options": [
+    "run_of_river",
+    "existing_no_volume_change",
+    "existing_enlarged_pd_gt_4",
+    "new_reservoir_pd_gt_4",
+    "pd_le_4"
+   ]
+  },
+  "source": {
+   "page": 8,
+   "para": "15",
+   "quote": "The Article 6.4 activity involves the establishment of a run -of-river hydropower plant",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": "PACM_A6.4-AMM-003_v01.0_C04",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-003_v01.0_C05",
+  "methodology_id": "GS_A6.4-AMM-003_v01.0",
+  "text": "Hydro capacity is at most 15 MW",
+  "type": "hard",
+  "profile_field": "capacity_mw",
+  "secondary_fields": [
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "technology",
+     "operator": "not_in",
+     "value": [
+      "hydro"
+     ]
+    },
+    {
+     "field": "capacity_mw",
+     "operator": "lte",
+     "value": 15
+    }
+   ]
+  },
+  "question": {
+   "text": "What is the installed capacity in MW?",
+   "answer_type": "number",
+   "options": []
+  },
+  "source": {
+   "page": 9,
+   "para": "16(a)",
+   "quote": "The plant has an installed electricity generation capacity of up to 15 MW",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": "PACM_A6.4-AMM-003_v01.0_C05",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-003_v01.0_C06",
+  "methodology_id": "GS_A6.4-AMM-003_v01.0",
+  "text": "Solar plants are not on land classified as agricultural or forest land",
+  "type": "hard",
+  "profile_field": "on_agri_or_forest_land",
+  "secondary_fields": [
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "technology",
+     "operator": "not_in",
+     "value": [
+      "solar_pv"
+     ]
+    },
+    {
+     "field": "on_agri_or_forest_land",
+     "operator": "is_false"
+    }
+   ]
+  },
+  "question": {
+   "text": "Is any of the plant built on land officially classed as agricultural or forest land?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 9,
+   "para": "17",
+   "quote": "the power plants are not installed on land that has been classified as agricultural land or forestland by relevant authorities",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": "PACM_A6.4-AMM-003_v01.0_C06",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-003_v01.0_C07",
+  "methodology_id": "GS_A6.4-AMM-003_v01.0",
+  "text": "No agreement to supply the electricity to specific consumers through the grid (no open-access/corporate PPA)",
+  "type": "hard",
+  "profile_field": "supplies_end_consumer",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will the power be sold directly to a specific consumer (open access, captive or corporate PPA) rather than into the grid?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 9,
+   "para": "19(a)",
+   "quote": "The activity participants have not entered into any agreements to supply the electricity from the Article 6.4 activity through the electricity system to specific consumers",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": "PACM_A6.4-AMM-003_v01.0_C07",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-003_v01.0_C08",
+  "methodology_id": "GS_A6.4-AMM-003_v01.0",
+  "text": "Equipment is newly produced and never installed or operated elsewhere",
+  "type": "hard",
+  "profile_field": "new_equipment",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Is all the main equipment (panels, turbines, generators) new and never used before?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 9,
+   "para": "19(b)",
+   "quote": "Demonstrably unused, meaning that it has not previously been installed, commissioned, or operated in any other plant",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": "PACM_A6.4-AMM-003_v01.0_C08",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "CCTS_BMEN01.001_v1.0_C01",
+  "methodology_id": "CCTS_BMEN01.001_v1.0",
+  "text": "Grid-connected renewable power: greenfield, retrofit, rehabilitation, replacement or capacity addition",
+  "type": "hard",
+  "profile_field": "grid_connected",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Is the project connected to the electricity grid?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "6",
+   "quote": "This methodology applies to grid-connected renewable energy generation project activities that include",
+   "doc": "CCTS_BMEN01.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 6 (scope) and para 9 (applicability): grid-connected only."
+ },
+ {
+  "condition_id": "CCTS_BMEN01.001_v1.0_C02",
+  "methodology_id": "CCTS_BMEN01.001_v1.0",
+  "text": "Standalone grid-connected solar PV and onshore wind are excluded; they qualify only as hybrids with battery or pumped storage. Eligible on their own: hydro, offshore wind, geothermal, wave, tidal",
+  "type": "hard",
+  "profile_field": "technology",
+  "secondary_fields": [
+   "has_storage"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "technology",
+     "operator": "in",
+     "value": [
+      "hydro",
+      "wind_offshore",
+      "geothermal"
+     ]
+    },
+    {
+     "field": "has_storage",
+     "operator": "is_true"
+    }
+   ]
+  },
+  "question": {
+   "text": "What technology does the project use?",
+   "answer_type": "single_select",
+   "options": [
+    "solar_pv",
+    "wind_onshore",
+    "wind_offshore",
+    "geothermal",
+    "hydro",
+    "lfg_capture",
+    "household_biogas",
+    "farm_digester",
+    "centralised_digester",
+    "plantation",
+    "mangrove",
+    "efficient_equipment",
+    "fuel_switch",
+    "renewable_heat",
+    "waste_heat"
+   ]
+  },
+  "source": {
+   "page": 6,
+   "para": "9, 11(a)",
+   "quote": "Install a Greenfield power plant (excluding standalone grid-connected wind and solar power plants)",
+   "doc": "CCTS_BMEN01.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.6 para 9(a)-(e) exclude standalone wind and solar; 9(g) admits hybrids with BESS/PSP; p.7 para 11(a) lists hydro, offshore wind, geothermal, wave, tidal. Offshore wind is therefore eligible without storage."
+ },
+ {
+  "condition_id": "CCTS_BMEN01.001_v1.0_C03",
+  "methodology_id": "CCTS_BMEN01.001_v1.0",
+  "text": "Battery storage: with a greenfield plant (any technology), or with capacity additions/retrofits of existing solar PV or wind only (Table 2)",
+  "type": "hard",
+  "profile_field": "has_storage",
+  "secondary_fields": [
+   "project_activity_type",
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "has_storage",
+     "operator": "is_false"
+    },
+    {
+     "field": "project_activity_type",
+     "operator": "in",
+     "value": [
+      "greenfield"
+     ]
+    },
+    {
+     "operator": "all_of",
+     "value": [
+      {
+       "field": "technology",
+       "operator": "in",
+       "value": [
+        "solar_pv",
+        "wind_onshore",
+        "wind_offshore"
+       ]
+      },
+      {
+       "field": "project_activity_type",
+       "operator": "in",
+       "value": [
+        "capacity_addition",
+        "retrofit"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "Does the project include battery or other energy storage?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 7,
+   "para": "10, Table 2",
+   "quote": "Combinations of renewable energy technologies and mode of BESS applicable for integration",
+   "doc": "CCTS_BMEN01.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.7 Table 2 (same as ACM0002 Table 2): greenfield + BESS for all; capacity addition/retrofit + BESS for solar PV or wind only."
+ },
+ {
+  "condition_id": "CCTS_BMEN01.001_v1.0_C04",
+  "methodology_id": "CCTS_BMEN01.001_v1.0",
+  "text": "For capacity additions, retrofits, rehabilitations or replacements (except wind, wave, tidal capacity additions): existing plant operated for a 5-year reference period with no expansion/retrofit since",
+  "type": "hard",
+  "profile_field": "project_activity_type",
+  "secondary_fields": [
+   "technology",
+   "existing_plant_5y"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "project_activity_type",
+     "operator": "in",
+     "value": [
+      "greenfield"
+     ]
+    },
+    {
+     "operator": "all_of",
+     "value": [
+      {
+       "field": "technology",
+       "operator": "in",
+       "value": [
+        "wind_onshore",
+        "wind_offshore"
+       ]
+      },
+      {
+       "field": "project_activity_type",
+       "operator": "in",
+       "value": [
+        "capacity_addition"
+       ]
+      }
+     ]
+    },
+    {
+     "field": "existing_plant_5y",
+     "operator": "is_true"
+    }
+   ]
+  },
+  "question": {
+   "text": "Is this a new plant, an addition to an existing plant, or an upgrade/rehabilitation/replacement of existing equipment?",
+   "answer_type": "single_select",
+   "options": [
+    "greenfield",
+    "capacity_addition",
+    "retrofit",
+    "rehabilitation",
+    "replacement"
+   ]
+  },
+  "source": {
+   "page": 7,
+   "para": "11(b)",
+   "quote": "the existing plant/unit must have started commercial operation prior to the start of a minimum historical reference period of five years",
+   "doc": "CCTS_BMEN01.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.7 para 11(b): unlike ACM0002, the exemption covers wind, wave and tidal capacity additions only (not solar)."
+ },
+ {
+  "condition_id": "CCTS_BMEN01.001_v1.0_C05",
+  "methodology_id": "CCTS_BMEN01.001_v1.0",
+  "text": "Hydro: existing reservoir with no volume change, or enlarged/new reservoir with power density above 4 W/m2",
+  "type": "hard",
+  "profile_field": "hydro_reservoir",
+  "secondary_fields": [
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "technology",
+     "operator": "not_in",
+     "value": [
+      "hydro"
+     ]
+    },
+    {
+     "field": "hydro_reservoir",
+     "operator": "in",
+     "value": [
+      "run_of_river",
+      "existing_no_volume_change",
+      "existing_enlarged_pd_gt_4",
+      "new_reservoir_pd_gt_4"
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "(Hydro only) Which describes the reservoir? 'pd' = installed watts per m2 of reservoir surface.",
+   "answer_type": "single_select",
+   "options": [
+    "run_of_river",
+    "existing_no_volume_change",
+    "existing_enlarged_pd_gt_4",
+    "new_reservoir_pd_gt_4",
+    "pd_le_4"
+   ]
+  },
+  "source": {
+   "page": 8,
+   "para": "12",
+   "quote": "The project activity is implemented in existing single or multiple reservoirs, with no change in the volume of any of the reservoirs",
+   "doc": "CCTS_BMEN01.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.8 para 12(a)-(c): any_of passes non-hydro projects; integrated multi-reservoir hydro (12(d)) is not modelled, so pd_le_4 fails."
+ },
+ {
+  "condition_id": "CCTS_BMEN01.001_v1.0_C06",
+  "methodology_id": "CCTS_BMEN01.001_v1.0",
+  "text": "Not applicable to switching from fossil fuels to renewables at the project site",
+  "type": "hard",
+  "profile_field": "baseline",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "grid"
+   ]
+  },
+  "question": {
+   "text": "What does the project replace, or what would have happened without it?",
+   "answer_type": "single_select",
+   "options": [
+    "grid",
+    "captive_fossil",
+    "vented",
+    "flared_partly",
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel",
+    "degraded",
+    "cropland",
+    "grassland",
+    "forest",
+    "old_equipment",
+    "coal",
+    "oil",
+    "grid_power"
+   ]
+  },
+  "source": {
+   "page": 8,
+   "para": "15(a)",
+   "quote": "Project activities that involve switching from fossil fuels to renewable energy sources at the site of the project activity",
+   "doc": "CCTS_BMEN01.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.8 para 15(a). UI baseline 'captive_fossil' (replacing a captive diesel/coal plant) is the on-site switch the paragraph excludes."
+ },
+ {
+  "condition_id": "CCTS_BMEN01.001_v1.0_X01",
+  "methodology_id": "CCTS_BMEN01.001_v1.0",
+  "text": "The project owner is a non-obligated entity: CCTS obligated entities cannot earn offset credits",
+  "type": "hard",
+  "profile_field": "ccts_obligated",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is the project owner an obligated entity under India's Carbon Credit Trading Scheme (a notified emissions-intensity target)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "2",
+   "quote": "It shall be the responsibility of the non-obligated entity",
+   "doc": "CCTS_BMEN01.001_v1.0",
+   "rule_doc": "CCTS notification S.O. 2825(E) as amended by S.O. 5369(E) (offset mechanism for non-obligated entities); not in Data/Eligibility"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "Each BM methodology para 2 (PDF p.3) assigns the project to 'the non-obligated entity'; the hard filter applies the same rule. Primary legal text (CCTS notification) is not in the repo."
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-003_v01.0_C01",
+  "methodology_id": "PACM_A6.4-AMM-003_v01.0",
+  "text": "Greenfield renewable power plant that feeds all net electricity into the grid (no capacity additions, retrofits or replacements)",
+  "type": "hard",
+  "profile_field": "project_activity_type",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "greenfield"
+   ]
+  },
+  "question": {
+   "text": "Is this a new plant, an addition to an existing plant, or an upgrade/rehabilitation/replacement of existing equipment?",
+   "answer_type": "single_select",
+   "options": [
+    "greenfield",
+    "capacity_addition",
+    "retrofit",
+    "rehabilitation",
+    "replacement"
+   ]
+  },
+  "source": {
+   "page": 7,
+   "para": "12",
+   "quote": "install a greenfield power plant that generates electricity from renewable sources and feeds all the net electricity generated into an electricity system",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-003_v01.0_C02",
+  "methodology_id": "PACM_A6.4-AMM-003_v01.0",
+  "text": "Technology is hydro, wind, solar PV, solar thermal or geothermal",
+  "type": "hard",
+  "profile_field": "technology",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "hydro",
+    "wind_onshore",
+    "wind_offshore",
+    "geothermal",
+    "solar_pv"
+   ]
+  },
+  "question": {
+   "text": "What technology does the project use?",
+   "answer_type": "single_select",
+   "options": [
+    "solar_pv",
+    "wind_onshore",
+    "wind_offshore",
+    "geothermal",
+    "hydro",
+    "lfg_capture",
+    "household_biogas",
+    "farm_digester",
+    "centralised_digester",
+    "plantation",
+    "mangrove",
+    "efficient_equipment",
+    "fuel_switch",
+    "renewable_heat",
+    "waste_heat"
+   ]
+  },
+  "source": {
+   "page": 7,
+   "para": "13",
+   "quote": "The types of renewable energy power plants eligible under this mechanism methodology are hydropower plants, wind power plants, solar photovoltaic power plants, solar thermal power plants, and geothermal power plants",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-003_v01.0_C03",
+  "methodology_id": "PACM_A6.4-AMM-003_v01.0",
+  "text": "If storage is included: BESS on the same site, charged only by the project plant, installed before the project meter",
+  "type": "hard",
+  "profile_field": "has_storage",
+  "secondary_fields": [],
+  "rule": null,
+  "question": {
+   "text": "Does the project include battery or other energy storage?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 7,
+   "para": "14",
+   "quote": "Solely charged with electricity provided by the Article 6.4 renewable power generation plant",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "Project includes battery storage",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-003_v01.0_C04",
+  "methodology_id": "PACM_A6.4-AMM-003_v01.0",
+  "text": "Hydro: run-of-river (storage <= 24 h, residence < 2 days, no flooding of forest/peat) or an existing reservoir (10+ years old, no volume increase, no loss of irrigation water)",
+  "type": "hard",
+  "profile_field": "hydro_reservoir",
+  "secondary_fields": [
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "technology",
+     "operator": "not_in",
+     "value": [
+      "hydro"
+     ]
+    },
+    {
+     "field": "hydro_reservoir",
+     "operator": "in",
+     "value": [
+      "run_of_river",
+      "existing_no_volume_change"
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "(Hydro only) Which describes the reservoir? 'pd' = installed watts per m2 of reservoir surface.",
+   "answer_type": "single_select",
+   "options": [
+    "run_of_river",
+    "existing_no_volume_change",
+    "existing_enlarged_pd_gt_4",
+    "new_reservoir_pd_gt_4",
+    "pd_le_4"
+   ]
+  },
+  "source": {
+   "page": 8,
+   "para": "15",
+   "quote": "The Article 6.4 activity involves the establishment of a run -of-river hydropower plant",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-003_v01.0_C05",
+  "methodology_id": "PACM_A6.4-AMM-003_v01.0",
+  "text": "Hydro capacity is at most 15 MW",
+  "type": "hard",
+  "profile_field": "capacity_mw",
+  "secondary_fields": [
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "technology",
+     "operator": "not_in",
+     "value": [
+      "hydro"
+     ]
+    },
+    {
+     "field": "capacity_mw",
+     "operator": "lte",
+     "value": 15
+    }
+   ]
+  },
+  "question": {
+   "text": "What is the installed capacity in MW?",
+   "answer_type": "number",
+   "options": []
+  },
+  "source": {
+   "page": 9,
+   "para": "16(a)",
+   "quote": "The plant has an installed electricity generation capacity of up to 15 MW",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-003_v01.0_C06",
+  "methodology_id": "PACM_A6.4-AMM-003_v01.0",
+  "text": "Solar plants are not on land classified as agricultural or forest land",
+  "type": "hard",
+  "profile_field": "on_agri_or_forest_land",
+  "secondary_fields": [
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "technology",
+     "operator": "not_in",
+     "value": [
+      "solar_pv"
+     ]
+    },
+    {
+     "field": "on_agri_or_forest_land",
+     "operator": "is_false"
+    }
+   ]
+  },
+  "question": {
+   "text": "Is any of the plant built on land officially classed as agricultural or forest land?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 9,
+   "para": "17",
+   "quote": "the power plants are not installed on land that has been classified as agricultural land or forestland by relevant authorities",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-003_v01.0_C07",
+  "methodology_id": "PACM_A6.4-AMM-003_v01.0",
+  "text": "No agreement to supply the electricity to specific consumers through the grid (no open-access/corporate PPA)",
+  "type": "hard",
+  "profile_field": "supplies_end_consumer",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will the power be sold directly to a specific consumer (open access, captive or corporate PPA) rather than into the grid?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 9,
+   "para": "19(a)",
+   "quote": "The activity participants have not entered into any agreements to supply the electricity from the Article 6.4 activity through the electricity system to specific consumers",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-003_v01.0_C08",
+  "methodology_id": "PACM_A6.4-AMM-003_v01.0",
+  "text": "Equipment is newly produced and never installed or operated elsewhere",
+  "type": "hard",
+  "profile_field": "new_equipment",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Is all the main equipment (panels, turbines, generators) new and never used before?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 9,
+   "para": "19(b)",
+   "quote": "Demonstrably unused, meaning that it has not previously been installed, commissioned, or operated in any other plant",
+   "doc": "PACM_A6.4-AMM-003_v01.0"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-003_v01.0_X01",
+  "methodology_id": "PACM_A6.4-AMM-003_v01.0",
+  "text": "India's A6.4 list covers RE with storage (stored component only), solar thermal power and offshore wind among RE activities; plain onshore solar PV/wind is not listed",
+  "type": "hard",
+  "profile_field": "has_storage",
+  "secondary_fields": [
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "has_storage",
+     "operator": "is_true"
+    },
+    {
+     "field": "technology",
+     "operator": "in",
+     "value": [
+      "wind_offshore"
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "Does the project include battery or other energy storage?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "doc": "A6.4_Form_AC-001_India",
+   "page": 4,
+   "para": "I.1-3",
+   "quote": "Renewable energy with storage (only stored component)"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "VCS_VMR0016_v1.0_C01",
+  "methodology_id": "VCS_VMR0016_v1.0",
+  "text": "Either a new LFG capture system where none was or would have been installed, or an upgrade of an existing system whose captured gas was only vented or flared (not used) before the project",
+  "type": "hard",
+  "profile_field": "lfg_already_used",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Before the project, was any captured landfill gas already used for energy (not just flared or vented)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "3(a)-(b)",
+   "quote": "The captured LFG was vented or flared and not used prior to the implementation of the project activity",
+   "doc": "VCS_ACM0001_v19"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "VCS_ACM0001_v19_C01",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 para 3(a)/(b): new system (no prior capture, so no prior use) or upgrade where gas was vented/flared and not used. is_false on lfg_already_used covers both branches."
+ },
+ {
+  "condition_id": "VCS_VMR0016_v1.0_C02",
+  "methodology_id": "VCS_VMR0016_v1.0",
+  "text": "Captured LFG is flared and/or used for electricity, heat (boiler, air heater, brick kiln or glass furnace), natural gas network, trucks or a dedicated pipeline",
+  "type": "hard",
+  "profile_field": "lfg_end_use",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "question": {
+   "text": "What will the captured landfill gas be used for?",
+   "answer_type": "multi_select",
+   "options": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "source": {
+   "page": 3,
+   "para": "3(c)",
+   "quote": "Flare the LFG and/or use the captured LFG in any (combination) of the following ways",
+   "doc": "VCS_ACM0001_v19"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "VCS_ACM0001_v19_C02",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3-4 para 3(c)(i)-(v): flaring, electricity, heat, gas network, trucks, dedicated pipeline. 'in' = every selected use is allowed. Heat is limited to the listed equipment (fn 1); the rule does not check equipment type."
+ },
+ {
+  "condition_id": "VCS_VMR0016_v1.0_C03",
+  "methodology_id": "VCS_VMR0016_v1.0",
+  "text": "The project does not reduce the amount of organic waste that would be recycled without it",
+  "type": "hard",
+  "profile_field": "reduces_organic_recycling",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Would the project reduce organic waste that would otherwise be composted or recycled?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "3(d)",
+   "quote": "Do not reduce the amount of organic waste that would be recycled in the absence of the project activity",
+   "doc": "VCS_ACM0001_v19"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "VCS_ACM0001_v19_C03",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 3(d), stated as an applicability condition."
+ },
+ {
+  "condition_id": "VCS_VMR0016_v1.0_C04",
+  "methodology_id": "VCS_VMR0016_v1.0",
+  "text": "Most plausible baseline is atmospheric release of LFG, or capture and flaring to meet regulations, contracts, safety or odour concerns",
+  "type": "hard",
+  "profile_field": "baseline",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "vented",
+    "flared_partly"
+   ]
+  },
+  "question": {
+   "text": "What does the project replace, or what would have happened without it?",
+   "answer_type": "single_select",
+   "options": [
+    "grid",
+    "captive_fossil",
+    "vented",
+    "flared_partly",
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel",
+    "degraded",
+    "cropland",
+    "grassland",
+    "forest",
+    "old_equipment",
+    "coal",
+    "oil",
+    "grid_power"
+   ]
+  },
+  "source": {
+   "page": 4,
+   "para": "4(a)",
+   "quote": "Atmospheric release of the LFG or capture of LFG and destruction through flaring to comply with regulations or contractual requirements",
+   "doc": "VCS_ACM0001_v19"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "VCS_ACM0001_v19_C04",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4/5 para 4(a)/7(a). The two LFG baseline options in the UI (vented, flared_partly) are exactly these cases."
+ },
+ {
+  "condition_id": "VCS_VMR0016_v1.0_C05",
+  "methodology_id": "VCS_VMR0016_v1.0",
+  "text": "If LFG makes electricity, the baseline electricity comes from the grid or captive fossil plants; if it makes heat, the baseline heat comes from fossil fuel in equipment inside the project boundary",
+  "type": "hard",
+  "profile_field": "lfg_end_use",
+  "secondary_fields": [
+   "heat_baseline_fossil"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "lfg_end_use",
+     "operator": "not_in",
+     "value": [
+      "heat"
+     ]
+    },
+    {
+     "field": "heat_baseline_fossil",
+     "operator": "is_true"
+    }
+   ]
+  },
+  "question": {
+   "text": "What will the captured landfill gas be used for?",
+   "answer_type": "multi_select",
+   "options": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "source": {
+   "page": 4,
+   "para": "4(b)",
+   "quote": "For electricity generation: that electricity would be generated in the grid or in captive fossil fuel fired power plants",
+   "doc": "VCS_ACM0001_v19"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "VCS_ACM0001_v19_C05",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 4(b): heat branch coded (heat_baseline_fossil). Electricity branch: any LFG power in India displaces grid or captive fossil power (CEA v22 OM 0.9634 t/MWh, logged by chat 3), so it is not asked."
+ },
+ {
+  "condition_id": "VCS_VMR0016_v1.0_C06",
+  "methodology_id": "VCS_VMR0016_v1.0",
+  "text": "The landfill is not deliberately managed differently during crediting to increase methane generation",
+  "type": "hard",
+  "profile_field": "swds_management_change",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will you change how the landfill is run (e.g. add liquids, recirculate leachate) to make more gas?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "5(b)",
+   "quote": "If the management of the SWDS in the project activity is deliberately changed during the crediting in order to in crease methane generation",
+   "doc": "VCS_ACM0001_v19"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "VCS_ACM0001_v19_C06",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 5(b): 'not applicable ... if the management of the SWDS ... is deliberately changed'."
+ },
+ {
+  "condition_id": "VCS_VMR0016_v1.0_C07",
+  "methodology_id": "VCS_VMR0016_v1.0",
+  "text": "Regulatory surplus: the project is not required by law or regulation (otherwise it is not additional)",
+  "type": "hard",
+  "profile_field": "legally_required",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is the project required by any law, regulation, court order or permit condition?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 6,
+   "para": "7.1.1",
+   "quote": "Where the project proponent demonstrates regulatory surplu s, proceed to Section 7.1.2. Otherwise, the project activity is not additional.",
+   "doc": "VCS_VMR0016_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.6 §7.1.1 and p.7 §7.2.1: regulatory surplus is required under both the activity and the project method."
+ },
+ {
+  "condition_id": "VCS_VMR0016_v1.0_C08",
+  "methodology_id": "VCS_VMR0016_v1.0",
+  "text": "Positive list (no investment analysis needed) if: electricity use <= 10 MW, or heat use, or flaring with carbon credits as the only revenue; gas vented/flared for 3+ years before; no grants or other public incentives. Otherwise an investment analysis and common-practice test (VT0009) are required",
+  "type": "soft",
+  "profile_field": "capacity_mw",
+  "secondary_fields": [
+   "lfg_end_use"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "capacity_mw",
+     "operator": "lte",
+     "value": 10
+    },
+    {
+     "field": "lfg_end_use",
+     "operator": "any_in",
+     "value": [
+      "heat"
+     ]
+    },
+    {
+     "field": "lfg_end_use",
+     "operator": "in",
+     "value": [
+      "flare"
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "What is the installed capacity in MW?",
+   "answer_type": "number",
+   "options": []
+  },
+  "source": {
+   "page": 6,
+   "para": "7.1.2",
+   "quote": "landfill gas use for electricity generation with a total installed generation capacity that does not exceed 10 MW",
+   "doc": "VCS_VMR0016_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.6 §7.1.2 positive list (a)-(c). Soft: failing it only means the project method (investment analysis) applies. The 3-years-vented and no-public-incentive criteria are not asked."
+ },
+ {
+  "condition_id": "VCS_ACM0001_v19_C01",
+  "methodology_id": "VCS_ACM0001_v19",
+  "text": "Either a new LFG capture system where none was or would have been installed, or an upgrade of an existing system whose captured gas was only vented or flared (not used) before the project",
+  "type": "hard",
+  "profile_field": "lfg_already_used",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Before the project, was any captured landfill gas already used for energy (not just flared or vented)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "3(a)-(b)",
+   "quote": "The captured LFG was vented or flared and not used prior to the implementation of the project activity",
+   "doc": "VCS_ACM0001_v19"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 para 3(a)/(b): new system (no prior capture, so no prior use) or upgrade where gas was vented/flared and not used. is_false on lfg_already_used covers both branches."
+ },
+ {
+  "condition_id": "VCS_ACM0001_v19_C02",
+  "methodology_id": "VCS_ACM0001_v19",
+  "text": "Captured LFG is flared and/or used for electricity, heat (boiler, air heater, brick kiln or glass furnace), natural gas network, trucks or a dedicated pipeline",
+  "type": "hard",
+  "profile_field": "lfg_end_use",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "question": {
+   "text": "What will the captured landfill gas be used for?",
+   "answer_type": "multi_select",
+   "options": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "source": {
+   "page": 3,
+   "para": "3(c)",
+   "quote": "Flare the LFG and/or use the captured LFG in any (combination) of the following ways",
+   "doc": "VCS_ACM0001_v19"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3-4 para 3(c)(i)-(v): flaring, electricity, heat, gas network, trucks, dedicated pipeline. 'in' = every selected use is allowed. Heat is limited to the listed equipment (fn 1); the rule does not check equipment type."
+ },
+ {
+  "condition_id": "VCS_ACM0001_v19_C03",
+  "methodology_id": "VCS_ACM0001_v19",
+  "text": "The project does not reduce the amount of organic waste that would be recycled without it",
+  "type": "hard",
+  "profile_field": "reduces_organic_recycling",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Would the project reduce organic waste that would otherwise be composted or recycled?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "3(d)",
+   "quote": "Do not reduce the amount of organic waste that would be recycled in the absence of the project activity",
+   "doc": "VCS_ACM0001_v19"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 3(d), stated as an applicability condition."
+ },
+ {
+  "condition_id": "VCS_ACM0001_v19_C04",
+  "methodology_id": "VCS_ACM0001_v19",
+  "text": "Most plausible baseline is atmospheric release of LFG, or capture and flaring to meet regulations, contracts, safety or odour concerns",
+  "type": "hard",
+  "profile_field": "baseline",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "vented",
+    "flared_partly"
+   ]
+  },
+  "question": {
+   "text": "What does the project replace, or what would have happened without it?",
+   "answer_type": "single_select",
+   "options": [
+    "grid",
+    "captive_fossil",
+    "vented",
+    "flared_partly",
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel",
+    "degraded",
+    "cropland",
+    "grassland",
+    "forest",
+    "old_equipment",
+    "coal",
+    "oil",
+    "grid_power"
+   ]
+  },
+  "source": {
+   "page": 4,
+   "para": "4(a)",
+   "quote": "Atmospheric release of the LFG or capture of LFG and destruction through flaring to comply with regulations or contractual requirements",
+   "doc": "VCS_ACM0001_v19"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4/5 para 4(a)/7(a). The two LFG baseline options in the UI (vented, flared_partly) are exactly these cases."
+ },
+ {
+  "condition_id": "VCS_ACM0001_v19_C05",
+  "methodology_id": "VCS_ACM0001_v19",
+  "text": "If LFG makes electricity, the baseline electricity comes from the grid or captive fossil plants; if it makes heat, the baseline heat comes from fossil fuel in equipment inside the project boundary",
+  "type": "hard",
+  "profile_field": "lfg_end_use",
+  "secondary_fields": [
+   "heat_baseline_fossil"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "lfg_end_use",
+     "operator": "not_in",
+     "value": [
+      "heat"
+     ]
+    },
+    {
+     "field": "heat_baseline_fossil",
+     "operator": "is_true"
+    }
+   ]
+  },
+  "question": {
+   "text": "What will the captured landfill gas be used for?",
+   "answer_type": "multi_select",
+   "options": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "source": {
+   "page": 4,
+   "para": "4(b)",
+   "quote": "For electricity generation: that electricity would be generated in the grid or in captive fossil fuel fired power plants",
+   "doc": "VCS_ACM0001_v19"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 4(b): heat branch coded (heat_baseline_fossil). Electricity branch: any LFG power in India displaces grid or captive fossil power (CEA v22 OM 0.9634 t/MWh, logged by chat 3), so it is not asked."
+ },
+ {
+  "condition_id": "VCS_ACM0001_v19_C06",
+  "methodology_id": "VCS_ACM0001_v19",
+  "text": "The landfill is not deliberately managed differently during crediting to increase methane generation",
+  "type": "hard",
+  "profile_field": "swds_management_change",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will you change how the landfill is run (e.g. add liquids, recirculate leachate) to make more gas?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "5(b)",
+   "quote": "If the management of the SWDS in the project activity is deliberately changed during the crediting in order to in crease methane generation",
+   "doc": "VCS_ACM0001_v19"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 5(b): 'not applicable ... if the management of the SWDS ... is deliberately changed'."
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-001_v01.0_C01",
+  "methodology_id": "GS_A6.4-AMM-001_v01.0",
+  "text": "Either a new LFG capture system where none was installed (except for legal/contractual requirements), or an upgrade of an existing system whose captured gas was flared and not used",
+  "type": "hard",
+  "profile_field": "lfg_already_used",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Before the project, was any captured landfill gas already used for energy (not just flared or vented)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 7,
+   "para": "11",
+   "quote": "where the captured LFG prior to the implementation of the Article 6.4 activity was flared and not used",
+   "doc": "PACM_A6.4-AMM-001_v01.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "PACM_A6.4-AMM-001_v01.0_C01",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.7 para 11(a)/(b)."
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-001_v01.0_C02",
+  "methodology_id": "GS_A6.4-AMM-001_v01.0",
+  "text": "LFG is collected exclusively for flaring, electricity, heat, biomethane to the gas network, trucks or a dedicated pipeline",
+  "type": "hard",
+  "profile_field": "lfg_end_use",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "question": {
+   "text": "What will the captured landfill gas be used for?",
+   "answer_type": "multi_select",
+   "options": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "source": {
+   "page": 7,
+   "para": "12",
+   "quote": "collect the LFG under the Article 6.4 activity exclusively for one or more of the following applications",
+   "doc": "PACM_A6.4-AMM-001_v01.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "PACM_A6.4-AMM-001_v01.0_C02",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.7-8 para 12(a)-(f)."
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-001_v01.0_C03",
+  "methodology_id": "GS_A6.4-AMM-001_v01.0",
+  "text": "The project does not reduce the amount of organic waste that would be recycled without it",
+  "type": "hard",
+  "profile_field": "reduces_organic_recycling",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Would the project reduce organic waste that would otherwise be composted or recycled?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 8,
+   "para": "13",
+   "quote": "The mechanism methodology is only applicable if the project does not reduce the amount of organic waste that would be recycled in the absence of the Article 6.4 activity",
+   "doc": "PACM_A6.4-AMM-001_v01.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "PACM_A6.4-AMM-001_v01.0_C03",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.8 para 13."
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-001_v01.0_C04",
+  "methodology_id": "GS_A6.4-AMM-001_v01.0",
+  "text": "Baseline for the methane: released to the atmosphere, or captured and flared to meet legal/contractual, safety or odour requirements",
+  "type": "hard",
+  "profile_field": "baseline",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "vented",
+    "flared_partly"
+   ]
+  },
+  "question": {
+   "text": "What does the project replace, or what would have happened without it?",
+   "answer_type": "single_select",
+   "options": [
+    "grid",
+    "captive_fossil",
+    "vented",
+    "flared_partly",
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel",
+    "degraded",
+    "cropland",
+    "grassland",
+    "forest",
+    "old_equipment",
+    "coal",
+    "oil",
+    "grid_power"
+   ]
+  },
+  "source": {
+   "page": 8,
+   "para": "14(a)",
+   "quote": "would be either released to the atmosphere or captured and destroyed through flaring to comply with legal or contractual requirements",
+   "doc": "PACM_A6.4-AMM-001_v01.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "PACM_A6.4-AMM-001_v01.0_C04",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.8 para 14(a)(i)-(ii)."
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-001_v01.0_C05",
+  "methodology_id": "GS_A6.4-AMM-001_v01.0",
+  "text": "Landfill management is not changed in a way that increases methane generation (unless required by law)",
+  "type": "hard",
+  "profile_field": "swds_management_change",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will you change how the landfill is run (e.g. add liquids, recirculate leachate) to make more gas?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 9,
+   "para": "17",
+   "quote": "This mechanism methodology is not applicable if the management of the SWDS in the Article 6.4 activity scenario is changed in a manner that increases methane generation",
+   "doc": "PACM_A6.4-AMM-001_v01.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": "PACM_A6.4-AMM-001_v01.0_C05",
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.9 para 17. The legal-requirement exception is not modelled."
+ },
+ {
+  "condition_id": "GS_A6.4-AMM-001_v01.0_X01",
+  "methodology_id": "GS_A6.4-AMM-001_v01.0",
+  "text": "Gold Standard: flaring-only landfill gas projects are not eligible; the gas must be used for energy (heat, power or gas supply)",
+  "type": "hard",
+  "profile_field": "lfg_end_use",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "any_in",
+   "value": [
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "question": {
+   "text": "What will the captured landfill gas be used for?",
+   "answer_type": "multi_select",
+   "options": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "source": {
+   "doc": "GS Article 6.4/PACM methodologies page",
+   "url": "https://globalgoals.goldstandard.org/article-6-4-pacm-methodology/",
+   "note": "Not in Data/Eligibility: Requirements_PAA.pdf (P&R100-01 v1.2) has no LFG rule. Text checked on the GS page 15 Nov 2026 via web search: 'Flaring-only activities are NOT eligible.'"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "GS Article 6.4/PACM page (checked 15 Nov 2026): flaring-only is not eligible, so at least one energy use is required (any_in)."
+ },
+ {
+  "condition_id": "GS_ACM0001_v19_X01",
+  "methodology_id": "GS_ACM0001_v19",
+  "text": "Gold Standard PA-alignment: projects submitted for preliminary review after 30 June 2026 must use an approved PA-aligned methodology",
+  "type": "hard",
+  "profile_field": null,
+  "secondary_fields": [],
+  "rule": null,
+  "question": null,
+  "source": {
+   "doc": "Requirements_PAA",
+   "page": 8,
+   "para": "4.1.1",
+   "quote": "Any project Submitted for Preliminary Review after the Sunset Date (30 June 2026, unless otherwise announced) shall use an approved PA-aligned methodology"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "CCTS_BMWA03.002_v1.0_C01",
+  "methodology_id": "CCTS_BMWA03.002_v1.0",
+  "text": "Either a new LFG capture system, or an upgrade of an existing system whose captured gas was only vented or flared (not used) before the project",
+  "type": "hard",
+  "profile_field": "lfg_already_used",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Before the project, was any captured landfill gas already used for energy (not just flared or vented)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "6(a)-(b)",
+   "quote": "The captured LFG was vented or flared and not used prior to the implementation of the project activity",
+   "doc": "CCTS_BMWA03.002_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 6(a)/(b), same wording as ACM0001 3(a)/(b)."
+ },
+ {
+  "condition_id": "CCTS_BMWA03.002_v1.0_C02",
+  "methodology_id": "CCTS_BMWA03.002_v1.0",
+  "text": "Captured LFG is flared and/or used for electricity, heat, natural gas network, trucks or a dedicated pipeline",
+  "type": "hard",
+  "profile_field": "lfg_end_use",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "question": {
+   "text": "What will the captured landfill gas be used for?",
+   "answer_type": "multi_select",
+   "options": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "source": {
+   "page": 4,
+   "para": "6(c)",
+   "quote": "Flare the LFG and/or use the captured LFG in any (combination) of the following ways",
+   "doc": "CCTS_BMWA03.002_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4-5 para 6(c)(i)-(v)."
+ },
+ {
+  "condition_id": "CCTS_BMWA03.002_v1.0_C03",
+  "methodology_id": "CCTS_BMWA03.002_v1.0",
+  "text": "Activities do not reduce the amount of organic waste that would be recycled without the project",
+  "type": "hard",
+  "profile_field": "reduces_organic_recycling",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Would the project reduce organic waste that would otherwise be composted or recycled?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "6",
+   "quote": "Activities should not reduce the amount of organic waste that would be recycled in the absence of the project activity",
+   "doc": "CCTS_BMWA03.002_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5, sentence closing para 6."
+ },
+ {
+  "condition_id": "CCTS_BMWA03.002_v1.0_C04",
+  "methodology_id": "CCTS_BMWA03.002_v1.0",
+  "text": "Most plausible baseline is atmospheric release of LFG or capture and flaring for regulatory, contractual, safety or odour reasons",
+  "type": "hard",
+  "profile_field": "baseline",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "vented",
+    "flared_partly"
+   ]
+  },
+  "question": {
+   "text": "What does the project replace, or what would have happened without it?",
+   "answer_type": "single_select",
+   "options": [
+    "grid",
+    "captive_fossil",
+    "vented",
+    "flared_partly",
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel",
+    "degraded",
+    "cropland",
+    "grassland",
+    "forest",
+    "old_equipment",
+    "coal",
+    "oil",
+    "grid_power"
+   ]
+  },
+  "source": {
+   "page": 5,
+   "para": "7(a)",
+   "quote": "Atmospheric release of the LFG or capture of LFG and destruction through flaring to comply with regulations or contractual requirements",
+   "doc": "CCTS_BMWA03.002_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4/5 para 4(a)/7(a). The two LFG baseline options in the UI (vented, flared_partly) are exactly these cases."
+ },
+ {
+  "condition_id": "CCTS_BMWA03.002_v1.0_C05",
+  "methodology_id": "CCTS_BMWA03.002_v1.0",
+  "text": "If LFG makes electricity or heat, the baseline is grid/captive fossil electricity or fossil-fuel heat inside the boundary",
+  "type": "hard",
+  "profile_field": "lfg_end_use",
+  "secondary_fields": [
+   "heat_baseline_fossil"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "lfg_end_use",
+     "operator": "not_in",
+     "value": [
+      "heat"
+     ]
+    },
+    {
+     "field": "heat_baseline_fossil",
+     "operator": "is_true"
+    }
+   ]
+  },
+  "question": {
+   "text": "What will the captured landfill gas be used for?",
+   "answer_type": "multi_select",
+   "options": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "source": {
+   "page": 5,
+   "para": "7(b)",
+   "quote": "For electricity generation: that electricity would be generated in the grid or in captive fossil fuel fired power plants",
+   "doc": "CCTS_BMWA03.002_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 7(b): heat branch coded (heat_baseline_fossil). Electricity branch: any LFG power in India displaces grid or captive fossil power (CEA v22 OM 0.9634 t/MWh, logged by chat 3), so it is not asked."
+ },
+ {
+  "condition_id": "CCTS_BMWA03.002_v1.0_C06",
+  "methodology_id": "CCTS_BMWA03.002_v1.0",
+  "text": "The landfill is not deliberately managed differently during crediting to increase methane generation",
+  "type": "hard",
+  "profile_field": "swds_management_change",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will you change how the landfill is run (e.g. add liquids, recirculate leachate) to make more gas?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 6,
+   "para": "8(b)",
+   "quote": "If the management of the SWDS in the project activity is deliberately changed during the crediting in order to increase methane generation",
+   "doc": "CCTS_BMWA03.002_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.6 para 8(b)."
+ },
+ {
+  "condition_id": "CCTS_BMWA03.002_v1.0_X01",
+  "methodology_id": "CCTS_BMWA03.002_v1.0",
+  "text": "The project owner is a non-obligated entity: CCTS obligated entities cannot earn offset credits",
+  "type": "hard",
+  "profile_field": "ccts_obligated",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is the project owner an obligated entity under India's Carbon Credit Trading Scheme (a notified emissions-intensity target)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "2",
+   "quote": "It shall be the responsibility of the non-obligated entity",
+   "doc": "CCTS_BMWA03.002_v1.0",
+   "rule_doc": "CCTS notification S.O. 2825(E) as amended by S.O. 5369(E) (offset mechanism for non-obligated entities); not in Data/Eligibility"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "Each BM methodology para 2 (PDF p.3) assigns the project to 'the non-obligated entity'; the hard filter applies the same rule. Primary legal text (CCTS notification) is not in the repo."
+ },
+ {
+  "condition_id": "CCTS_BMWA03.001_v1.0_C01",
+  "methodology_id": "CCTS_BMWA03.001_v1.0",
+  "text": "Methane from a landfill is captured and combusted (flared or used for energy)",
+  "type": "hard",
+  "profile_field": "lfg_end_use",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "flare",
+    "electricity",
+    "heat"
+   ]
+  },
+  "question": {
+   "text": "What will the captured landfill gas be used for?",
+   "answer_type": "multi_select",
+   "options": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "source": {
+   "page": 3,
+   "para": "4",
+   "quote": "This methodology comprises measures to capture and combust methane from landfills",
+   "doc": "CCTS_BMWA03.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 para 4: capture and combustion (flare or energy use). Pipeline/trucked supply is not named, so the rule leaves it out."
+ },
+ {
+  "condition_id": "CCTS_BMWA03.001_v1.0_C02",
+  "methodology_id": "CCTS_BMWA03.001_v1.0",
+  "text": "The project does not reduce the amount of organic waste that would have been recycled without it",
+  "type": "hard",
+  "profile_field": "reduces_organic_recycling",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Would the project reduce organic waste that would otherwise be composted or recycled?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "5",
+   "quote": "The proposed project activity does not reduce the amount of organic waste that would have been recycled in the absence of the project activity",
+   "doc": "CCTS_BMWA03.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 para 5."
+ },
+ {
+  "condition_id": "CCTS_BMWA03.001_v1.0_C03",
+  "methodology_id": "CCTS_BMWA03.001_v1.0",
+  "text": "The landfill is not deliberately managed differently to increase methane generation (other than to meet technical or regulatory requirements)",
+  "type": "hard",
+  "profile_field": "swds_management_change",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will you change how the landfill is run (e.g. add liquids, recirculate leachate) to make more gas?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "6",
+   "quote": "This methodology is not applicable if the management of the solid waste disposal site (SWDS) in the project activity is deliberately changed in order to increase methane generation",
+   "doc": "CCTS_BMWA03.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 para 6. Exception for technical/regulatory requirements is not modelled; answer 'no' if the change is only for compliance."
+ },
+ {
+  "condition_id": "CCTS_BMWA03.001_v1.0_X01",
+  "methodology_id": "CCTS_BMWA03.001_v1.0",
+  "text": "The project owner is a non-obligated entity: CCTS obligated entities cannot earn offset credits",
+  "type": "hard",
+  "profile_field": "ccts_obligated",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is the project owner an obligated entity under India's Carbon Credit Trading Scheme (a notified emissions-intensity target)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "2",
+   "quote": "It shall be the responsibility of the non-obligated entity",
+   "doc": "CCTS_BMWA03.001_v1.0",
+   "rule_doc": "CCTS notification S.O. 2825(E) as amended by S.O. 5369(E) (offset mechanism for non-obligated entities); not in Data/Eligibility"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "Each BM methodology para 2 (PDF p.3) assigns the project to 'the non-obligated entity'; the hard filter applies the same rule. Primary legal text (CCTS notification) is not in the repo."
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-001_v01.0_C01",
+  "methodology_id": "PACM_A6.4-AMM-001_v01.0",
+  "text": "Either a new LFG capture system where none was installed (except for legal/contractual requirements), or an upgrade of an existing system whose captured gas was flared and not used",
+  "type": "hard",
+  "profile_field": "lfg_already_used",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Before the project, was any captured landfill gas already used for energy (not just flared or vented)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 7,
+   "para": "11",
+   "quote": "where the captured LFG prior to the implementation of the Article 6.4 activity was flared and not used",
+   "doc": "PACM_A6.4-AMM-001_v01.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.7 para 11(a)/(b)."
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-001_v01.0_C02",
+  "methodology_id": "PACM_A6.4-AMM-001_v01.0",
+  "text": "LFG is collected exclusively for flaring, electricity, heat, biomethane to the gas network, trucks or a dedicated pipeline",
+  "type": "hard",
+  "profile_field": "lfg_end_use",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "question": {
+   "text": "What will the captured landfill gas be used for?",
+   "answer_type": "multi_select",
+   "options": [
+    "flare",
+    "electricity",
+    "heat",
+    "pipeline",
+    "trucked"
+   ]
+  },
+  "source": {
+   "page": 7,
+   "para": "12",
+   "quote": "collect the LFG under the Article 6.4 activity exclusively for one or more of the following applications",
+   "doc": "PACM_A6.4-AMM-001_v01.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.7-8 para 12(a)-(f)."
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-001_v01.0_C03",
+  "methodology_id": "PACM_A6.4-AMM-001_v01.0",
+  "text": "The project does not reduce the amount of organic waste that would be recycled without it",
+  "type": "hard",
+  "profile_field": "reduces_organic_recycling",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Would the project reduce organic waste that would otherwise be composted or recycled?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 8,
+   "para": "13",
+   "quote": "The mechanism methodology is only applicable if the project does not reduce the amount of organic waste that would be recycled in the absence of the Article 6.4 activity",
+   "doc": "PACM_A6.4-AMM-001_v01.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.8 para 13."
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-001_v01.0_C04",
+  "methodology_id": "PACM_A6.4-AMM-001_v01.0",
+  "text": "Baseline for the methane: released to the atmosphere, or captured and flared to meet legal/contractual, safety or odour requirements",
+  "type": "hard",
+  "profile_field": "baseline",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "vented",
+    "flared_partly"
+   ]
+  },
+  "question": {
+   "text": "What does the project replace, or what would have happened without it?",
+   "answer_type": "single_select",
+   "options": [
+    "grid",
+    "captive_fossil",
+    "vented",
+    "flared_partly",
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel",
+    "degraded",
+    "cropland",
+    "grassland",
+    "forest",
+    "old_equipment",
+    "coal",
+    "oil",
+    "grid_power"
+   ]
+  },
+  "source": {
+   "page": 8,
+   "para": "14(a)",
+   "quote": "would be either released to the atmosphere or captured and destroyed through flaring to comply with legal or contractual requirements",
+   "doc": "PACM_A6.4-AMM-001_v01.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.8 para 14(a)(i)-(ii)."
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-001_v01.0_C05",
+  "methodology_id": "PACM_A6.4-AMM-001_v01.0",
+  "text": "Landfill management is not changed in a way that increases methane generation (unless required by law)",
+  "type": "hard",
+  "profile_field": "swds_management_change",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will you change how the landfill is run (e.g. add liquids, recirculate leachate) to make more gas?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 9,
+   "para": "17",
+   "quote": "This mechanism methodology is not applicable if the management of the SWDS in the Article 6.4 activity scenario is changed in a manner that increases methane generation",
+   "doc": "PACM_A6.4-AMM-001_v01.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.9 para 17. The legal-requirement exception is not modelled."
+ },
+ {
+  "condition_id": "PACM_A6.4-AMM-001_v01.0_X01",
+  "methodology_id": "PACM_A6.4-AMM-001_v01.0",
+  "text": "Landfill gas is not on India's A6.4 list of activities (first 3 years)",
+  "type": "hard",
+  "profile_field": null,
+  "secondary_fields": [],
+  "rule": null,
+  "question": null,
+  "source": {
+   "doc": "A6.4_Form_AC-001_India",
+   "page": 4,
+   "para": "list I-III",
+   "quote": "Project from the below listed Climate Change Mitigation Activities will be prioritized for implementation in India under Article 6.4 mechanism"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "VCS_AMS-III.D_v22_C01",
+  "methodology_id": "VCS_AMS-III.D_v22",
+  "text": "Livestock are managed under confined conditions",
+  "type": "hard",
+  "profile_field": "livestock_confined",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Are the animals kept in sheds or pens (not grazing freely) so manure can be collected?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "3(a)",
+   "quote": "The livestock population in the farm is managed under confined conditions",
+   "doc": "VCS_AMS-III.D_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 para 3(a), 'only applicable under the following conditions'."
+ },
+ {
+  "condition_id": "VCS_AMS-III.D_v22_C02",
+  "methodology_id": "VCS_AMS-III.D_v22",
+  "text": "Manure is not discharged into rivers, estuaries, lakes or other natural water",
+  "type": "hard",
+  "profile_field": "manure_to_water",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is manure or digester slurry discharged into a river, lake, pond or canal?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "3(b)",
+   "quote": "Manure is not discharged into natural water resources",
+   "doc": "VCS_AMS-III.D_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 para 3(b)."
+ },
+ {
+  "condition_id": "VCS_AMS-III.D_v22_C03",
+  "methodology_id": "VCS_AMS-III.D_v22",
+  "text": "Annual average temperature at the baseline manure site is above 5 deg C",
+  "type": "hard",
+  "profile_field": "site_above_5c",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Is the site's average yearly temperature above 5 °C? (True almost everywhere in India except high-altitude Himalayan areas.)",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "3(c)",
+   "quote": "The annual average temperature of the site where the baseline anaerobic manure management system is located is higher than 5°C",
+   "doc": "VCS_AMS-III.D_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 para 3(c). Asked as a yes/no (site_above_5c) rather than inferred from the state."
+ },
+ {
+  "condition_id": "VCS_AMS-III.D_v22_C04",
+  "methodology_id": "VCS_AMS-III.D_v22",
+  "text": "Baseline is an anaerobic system (lagoon or liquid/slurry storage) holding manure for more than 12 months",
+  "type": "hard",
+  "profile_field": "manure_baseline_system",
+  "secondary_fields": [
+   "manure_retention_months"
+  ],
+  "rule": {
+   "operator": "all_of",
+   "value": [
+    {
+     "field": "manure_baseline_system",
+     "operator": "in",
+     "value": [
+      "uncovered_lagoon",
+      "liquid_slurry"
+     ]
+    },
+    {
+     "field": "manure_retention_months",
+     "operator": "gt",
+     "value": 12
+    }
+   ]
+  },
+  "question": {
+   "text": "How is the manure handled today, before the project?",
+   "answer_type": "single_select",
+   "options": [
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel"
+   ]
+  },
+  "source": {
+   "page": 3,
+   "para": "3(d)",
+   "quote": "the retention time of manure in the anaerobic management system is greater than 12 months",
+   "doc": "VCS_AMS-III.D_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 para 3(d): >12 months retention per 2019 IPCC Table 10.17 fn 7. Solid storage, daily spread and dung cakes are not anaerobic systems, so they fail. Lagoon depth >= 1 m is a separate condition (not in this rule)."
+ },
+ {
+  "condition_id": "VCS_AMS-III.D_v22_C05",
+  "methodology_id": "VCS_AMS-III.D_v22",
+  "text": "If the baseline uses anaerobic lagoons, each lagoon is at least 1 m deep",
+  "type": "hard",
+  "profile_field": "lagoon_depth_1m",
+  "secondary_fields": [
+   "manure_baseline_system"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "manure_baseline_system",
+     "operator": "not_in",
+     "value": [
+      "uncovered_lagoon"
+     ]
+    },
+    {
+     "field": "lagoon_depth_1m",
+     "operator": "is_true"
+    }
+   ]
+  },
+  "question": {
+   "text": "(If manure is kept in a lagoon today) Is each lagoon at least 1 metre deep?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "3(d)",
+   "quote": "if anaerobic lagoons are used, the depthof each lagoon must be at least 1 m",
+   "doc": "VCS_AMS-III.D_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 para 3(d): applies only to lagoon baselines, hence any_of."
+ },
+ {
+  "condition_id": "VCS_AMS-III.D_v22_C06",
+  "methodology_id": "VCS_AMS-III.D_v22",
+  "text": "No methane is recovered and flared or used in the baseline",
+  "type": "hard",
+  "profile_field": "baseline_methane_recovery",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is any biogas already captured and burnt or used at the site today?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "3(e)",
+   "quote": "No methane recovery and destruction by flaring or combustion for gainful use takes place in the baseline scenario",
+   "doc": "VCS_AMS-III.D_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 para 3(e)."
+ },
+ {
+  "condition_id": "VCS_AMS-III.D_v22_C07",
+  "methodology_id": "VCS_AMS-III.D_v22",
+  "text": "Co-digestion of manure with other organic matter is not covered (use AMS-III.AO)",
+  "type": "hard",
+  "profile_field": "co_digestion",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will the digester also take other organic waste (crop residue, food waste) besides manure?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "5",
+   "quote": "Project activities that involve co-digestion of animal manure and other organic matters shall use",
+   "doc": "VCS_AMS-III.D_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 5: co-digestion projects must use AMS-III.AO instead."
+ },
+ {
+  "condition_id": "VCS_AMS-III.D_v22_C08",
+  "methodology_id": "VCS_AMS-III.D_v22",
+  "text": "Total Type III emission reductions are at most 60 kt CO2e per year",
+  "type": "hard",
+  "profile_field": "scale",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "small"
+   ]
+  },
+  "question": {
+   "text": "Roughly how big are the expected reductions? (small = under 60,000 t CO2e a year)",
+   "answer_type": "single_select",
+   "options": [
+    "small",
+    "large"
+   ]
+  },
+  "source": {
+   "page": 6,
+   "para": "9",
+   "quote": "Measures are limited to those that result in aggregate emission reductions of less than or equal to 60 kt CO2 equivalent annually",
+   "doc": "VCS_AMS-III.D_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.6 para 9: small-scale limit; the UI's scale answer is 'small = under 60,000 t CO2e a year'."
+ },
+ {
+  "condition_id": "VCS_AMS-III.D_v22_C09",
+  "methodology_id": "VCS_AMS-III.D_v22",
+  "text": "Simplified additionality: no host-country regulation requires collecting and destroying manure methane at the site",
+  "type": "soft",
+  "profile_field": "legally_required",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is the project required by any law, regulation, court order or permit condition?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 7,
+   "para": "15",
+   "quote": "there is no regulation in the host country applicable to the project site that requires the collection and destruction of methane from livestock manure",
+   "doc": "VCS_AMS-III.D_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.7 para 15. Soft: failing it only removes the simplified additionality route."
+ },
+ {
+  "condition_id": "VCS_ACM0010_v9_C01",
+  "methodology_id": "VCS_ACM0010_v9",
+  "text": "Baseline manure treatment is anaerobic (lagoon or liquid/slurry) and is replaced by a lower-emission system",
+  "type": "hard",
+  "profile_field": "manure_baseline_system",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "uncovered_lagoon",
+    "liquid_slurry"
+   ]
+  },
+  "question": {
+   "text": "How is the manure handled today, before the project?",
+   "answer_type": "single_select",
+   "options": [
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel"
+   ]
+  },
+  "source": {
+   "page": 4,
+   "para": "2",
+   "quote": "where the existing anaerobic manure treatment system is replaced by new] animal waste management systems",
+   "doc": "VCS_ACM0010_v9"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 2: an existing anaerobic manure treatment system is replaced, or a greenfield facility; greenfield is limited further by p.9 para 16 (condition below), so in every case the baseline must be anaerobic. Chat 6 eval fix (15 Nov 2026): the old any_of(..., greenfield) passed greenfield digesters on any baseline (e.g. solid storage, dung cakes)."
+ },
+ {
+  "condition_id": "VCS_ACM0010_v9_C02",
+  "methodology_id": "VCS_ACM0010_v9",
+  "text": "Livestock (cattle, buffalo, swine, sheep, goats and/or poultry) are managed under confined conditions",
+  "type": "hard",
+  "profile_field": "livestock_confined",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Are the animals kept in sheds or pens (not grazing freely) so manure can be collected?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "3(a)",
+   "quote": "Farms where livestock populations (cattle, buffalo, swine, sheep, goats, and/or poultry) are managed under confined conditions",
+   "doc": "VCS_ACM0010_v9"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 3(a)."
+ },
+ {
+  "condition_id": "VCS_ACM0010_v9_C03",
+  "methodology_id": "VCS_ACM0010_v9",
+  "text": "Manure is not discharged into natural water",
+  "type": "hard",
+  "profile_field": "manure_to_water",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is manure or digester slurry discharged into a river, lake, pond or canal?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "3(b)",
+   "quote": "Farms where manure is not discharged into natural water resources",
+   "doc": "VCS_ACM0010_v9"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 3(b)."
+ },
+ {
+  "condition_id": "VCS_ACM0010_v9_C04",
+  "methodology_id": "VCS_ACM0010_v9",
+  "text": "Baseline anaerobic lagoons are at least 1 m deep",
+  "type": "hard",
+  "profile_field": "lagoon_depth_1m",
+  "secondary_fields": [
+   "manure_baseline_system"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "manure_baseline_system",
+     "operator": "not_in",
+     "value": [
+      "uncovered_lagoon"
+     ]
+    },
+    {
+     "field": "lagoon_depth_1m",
+     "operator": "is_true"
+    }
+   ]
+  },
+  "question": {
+   "text": "(If manure is kept in a lagoon today) Is each lagoon at least 1 metre deep?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "3(c)",
+   "quote": "the depth of the lagoons used for manure management under the baseline scenario should be at least 1 m",
+   "doc": "VCS_ACM0010_v9"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 3(c): applies only to lagoon baselines, hence any_of."
+ },
+ {
+  "condition_id": "VCS_ACM0010_v9_C05",
+  "methodology_id": "VCS_ACM0010_v9",
+  "text": "Annual average temperature at the baseline site is above 5 deg C",
+  "type": "hard",
+  "profile_field": "site_above_5c",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Is the site's average yearly temperature above 5 °C? (True almost everywhere in India except high-altitude Himalayan areas.)",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "3(d)",
+   "quote": "The annual average ambient temperature at the site where the anaerobic manure treatment facility in the baseline existed is higher than 5°C",
+   "doc": "VCS_ACM0010_v9"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 3(d)."
+ },
+ {
+  "condition_id": "VCS_ACM0010_v9_C06",
+  "methodology_id": "VCS_ACM0010_v9",
+  "text": "If the baseline is an uncovered anaerobic lagoon, manure stays in it at least 12 months",
+  "type": "hard",
+  "profile_field": "manure_retention_months",
+  "secondary_fields": [
+   "manure_baseline_system"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "manure_baseline_system",
+     "operator": "not_in",
+     "value": [
+      "uncovered_lagoon"
+     ]
+    },
+    {
+     "field": "manure_retention_months",
+     "operator": "gte",
+     "value": 12
+    }
+   ]
+  },
+  "question": {
+   "text": "Today, how many months does manure stay in the lagoon or pit before it is removed?",
+   "answer_type": "number",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "3(e)",
+   "quote": "the retention time of the manure in the system should be at least 12 months",
+   "doc": "VCS_ACM0010_v9"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 3(e): applies only to uncovered-lagoon baselines, hence any_of."
+ },
+ {
+  "condition_id": "VCS_ACM0010_v9_C07",
+  "methodology_id": "VCS_ACM0010_v9",
+  "text": "No co-digestion of manure with other organic wastes",
+  "type": "hard",
+  "profile_field": "co_digestion",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will the digester also take other organic waste (crop residue, food waste) besides manure?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "3(g)",
+   "quote": "does not involve co-digestion of manure with other organic wastes",
+   "doc": "VCS_ACM0010_v9"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 3(g)."
+ },
+ {
+  "condition_id": "VCS_ACM0010_v9_C08",
+  "methodology_id": "VCS_ACM0010_v9",
+  "text": "Greenfield facilities: only where the baseline scenario is an uncovered anaerobic lagoon",
+  "type": "hard",
+  "profile_field": "project_activity_type",
+  "secondary_fields": [
+   "manure_baseline_system"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "manure_baseline_system",
+     "operator": "in",
+     "value": [
+      "uncovered_lagoon"
+     ]
+    },
+    {
+     "field": "project_activity_type",
+     "operator": "not_in",
+     "value": [
+      "greenfield"
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "Is this a new plant, an addition to an existing plant, or an upgrade/rehabilitation/replacement of existing equipment?",
+   "answer_type": "single_select",
+   "options": [
+    "greenfield",
+    "capacity_addition",
+    "retrofit",
+    "rehabilitation",
+    "replacement"
+   ]
+  },
+  "source": {
+   "page": 9,
+   "para": "16",
+   "quote": "For Greenfield facilities, the methodology only applies where the baseline scenario",
+   "doc": "VCS_ACM0010_v9"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.9 para 16 (section 5.2.1.2): greenfield only with an uncovered anaerobic lagoon baseline. Lagoon baselines pass without asking the activity type. Chat 6 eval fix (15 Nov 2026)."
+ },
+ {
+  "condition_id": "GS_AWMS_v2.0_C01",
+  "methodology_id": "GS_AWMS_v2.0",
+  "text": "Baseline manure management causes substantial anaerobic decay (lagoons, liquid slurry, deep pits); solid storage and dry heaps are not eligible unless they meet the methane criteria",
+  "type": "hard",
+  "profile_field": "manure_baseline_system",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "uncovered_lagoon",
+    "liquid_slurry"
+   ]
+  },
+  "question": {
+   "text": "How is the manure handled today, before the project?",
+   "answer_type": "single_select",
+   "options": [
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel"
+   ]
+  },
+  "source": {
+   "page": 8,
+   "para": "3.2.2",
+   "quote": "The methodology applies only to livestock manure managed under baseline conditions in systems that result in substantial anaerobic decomposition and methane generation",
+   "doc": "GS_AWMS_v2.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.8-9 §3.2.2. Dung cakes burned for fuel and daily spread are not anaerobic storage; solid storage is excluded unless shown to generate methane (not modelled)."
+ },
+ {
+  "condition_id": "GS_AWMS_v2.0_C02",
+  "methodology_id": "GS_AWMS_v2.0",
+  "text": "No methane is recovered and flared or used in the baseline",
+  "type": "hard",
+  "profile_field": "baseline_methane_recovery",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is any biogas already captured and burnt or used at the site today?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 9,
+   "para": "3.2.3",
+   "quote": "No methane recovery and destruction (by flaring or combustion for gainful use) takes place in the baseline scenario",
+   "doc": "GS_AWMS_v2.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.9 §3.2.3."
+ },
+ {
+  "condition_id": "GS_AWMS_v2.0_C03",
+  "methodology_id": "GS_AWMS_v2.0",
+  "text": "Captured biogas is utilised (not only flared)",
+  "type": "hard",
+  "profile_field": "biogas_end_use",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "not_in",
+   "value": [
+    "flare"
+   ]
+  },
+  "question": {
+   "text": "How will the biogas be used?",
+   "answer_type": "single_select",
+   "options": [
+    "cooking",
+    "heat",
+    "electricity",
+    "flare"
+   ]
+  },
+  "source": {
+   "page": 9,
+   "para": "3.2.6.1",
+   "quote": "The biogas captured shall be utilised",
+   "doc": "GS_AWMS_v2.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.9 §3.2.6.1: captured biogas shall be utilised, so flaring only fails. Chat 6 eval fix (15 Nov 2026): split from the thermal-use rule (now the last condition), which asks for an expert check instead of rejecting electricity use."
+ },
+ {
+  "condition_id": "GS_AWMS_v2.0_C04",
+  "methodology_id": "GS_AWMS_v2.0",
+  "text": "For thermal applications credited here, each unit's useful output is below 150 kW thermal",
+  "type": "hard",
+  "profile_field": "thermal_capacity_mwth",
+  "secondary_fields": [
+   "biogas_end_use"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "biogas_end_use",
+     "operator": "not_in",
+     "value": [
+      "cooking",
+      "heat"
+     ]
+    },
+    {
+     "field": "thermal_capacity_mwth",
+     "operator": "lt",
+     "value": 0.15
+    }
+   ]
+  },
+  "question": {
+   "text": "Total rated heat output of the new equipment (MW thermal)?",
+   "answer_type": "number",
+   "options": []
+  },
+  "source": {
+   "page": 10,
+   "para": "3.2.6.3",
+   "quote": "For thermal applications credited under this methodology, the continuous useful energy output shall be less than 150kW thermal per unit",
+   "doc": "GS_AWMS_v2.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.10 §3.2.6.3: 150 kW = 0.15 MWth, for thermal applications credited under AWMS only. Chat 6 eval fix (15 Nov 2026): no longer applied to electricity projects."
+ },
+ {
+  "condition_id": "GS_AWMS_v2.0_C05",
+  "methodology_id": "GS_AWMS_v2.0",
+  "text": "If Method 2 applies (> 5 t CO2e per digester per year): livestock at least partly confined, site above 5 deg C, lagoons >= 1 m, uncovered lagoons held >= 12 months, manure stored <= 45 days before digestion",
+  "type": "hard",
+  "profile_field": "livestock_confined",
+  "secondary_fields": [
+   "site_above_5c",
+   "manure_baseline_system",
+   "lagoon_depth_1m",
+   "manure_retention_months"
+  ],
+  "rule": {
+   "operator": "all_of",
+   "value": [
+    {
+     "field": "livestock_confined",
+     "operator": "is_true"
+    },
+    {
+     "field": "site_above_5c",
+     "operator": "is_true"
+    },
+    {
+     "operator": "any_of",
+     "value": [
+      {
+       "field": "manure_baseline_system",
+       "operator": "not_in",
+       "value": [
+        "uncovered_lagoon"
+       ]
+      },
+      {
+       "operator": "all_of",
+       "value": [
+        {
+         "field": "lagoon_depth_1m",
+         "operator": "is_true"
+        },
+        {
+         "field": "manure_retention_months",
+         "operator": "gte",
+         "value": 12
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "Are the animals kept in sheds or pens (not grazing freely) so manure can be collected?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 10,
+   "para": "3.2.6.5",
+   "quote": "The livestock population is managed fully or partly under confined conditions.",
+   "doc": "GS_AWMS_v2.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.10 §3.2.6.5 (Method 2). Applied to every project, which is stricter than the methodology (Method 1 projects below 5 t CO2e per digester are exempt); the 45-day storage limit is an obligation.",
+  "expert_check": "these conditions apply only to digesters cutting more than 5 t CO2e a year each (AWMS Method 2, §3.2.6.5). Typical household digesters are below that and are exempt; a consultant can confirm which method applies."
+ },
+ {
+  "condition_id": "GS_AWMS_v2.0_C06",
+  "methodology_id": "GS_AWMS_v2.0",
+  "text": "Biogas is credited here for thermal energy (cooking, water or space heating); electricity or mechanical use must be quantified under another approved methodology",
+  "type": "hard",
+  "profile_field": "biogas_end_use",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "cooking",
+    "heat"
+   ]
+  },
+  "question": {
+   "text": "How will the biogas be used?",
+   "answer_type": "single_select",
+   "options": [
+    "cooking",
+    "heat",
+    "electricity",
+    "flare"
+   ]
+  },
+  "source": {
+   "page": 9,
+   "para": "3.2.6.1",
+   "quote": "Other uses of captured biogas, such as electricity generation or mechanical power, are permitted where quantified under an approved Gold Standard or applicable methodology",
+   "doc": "GS_AWMS_v2.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.9 §3.2.6.1 and footnote 2 (p.8: the methodology does not limit the use of biogas). Coding thermal-only is stricter than the text, so a failure asks for an expert check. Chat 6 eval fix (15 Nov 2026).",
+  "expert_check": "AWMS credits methane avoidance with thermal biogas use. Electricity or mechanical use is allowed only if it is quantified under another approved Gold Standard (or applicable) methodology (§3.2.6.1); a consultant should confirm which methodology would cover it."
+ },
+ {
+  "condition_id": "CCTS_BMAG04.001_v1.0_C01",
+  "methodology_id": "CCTS_BMAG04.001_v1.0",
+  "text": "Domestic biogas digesters at individual households or small farms",
+  "type": "hard",
+  "profile_field": "farm_scale",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "household",
+    "small_farm"
+   ]
+  },
+  "question": {
+   "text": "Is this a household unit, a small farm, a large farm or a centralised plant?",
+   "answer_type": "single_select",
+   "options": [
+    "household",
+    "small_farm",
+    "large_farm",
+    "centralised"
+   ]
+  },
+  "source": {
+   "page": 3,
+   "para": "5(a)",
+   "quote": "The domestic biogas digester, methane recovery and combustion systems are installed at individual households or small farms",
+   "doc": "CCTS_BMAG04.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 para 5(a). Large farms and centralised plants fail (03_corpus §4 gap)."
+ },
+ {
+  "condition_id": "CCTS_BMAG04.001_v1.0_C02",
+  "methodology_id": "CCTS_BMAG04.001_v1.0",
+  "text": "Credits only for the share of manure that would decay anaerobically without the project (set by survey)",
+  "type": "soft",
+  "profile_field": "manure_baseline_system",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "uncovered_lagoon",
+    "liquid_slurry"
+   ]
+  },
+  "question": {
+   "text": "How is the manure handled today, before the project?",
+   "answer_type": "single_select",
+   "options": [
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel"
+   ]
+  },
+  "source": {
+   "page": 4,
+   "para": "5(c)",
+   "quote": "This methodology is applicable only to the fraction of the manure which would decay anaerobically in the absence of the project activity",
+   "doc": "CCTS_BMAG04.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 5(c). Soft: dung cakes, solid storage or daily spread earn little or no credit, so the route gets a warning, not an exclusion."
+ },
+ {
+  "condition_id": "CCTS_BMAG04.001_v1.0_C03",
+  "methodology_id": "CCTS_BMAG04.001_v1.0",
+  "text": "Annual average temperature where manure would decay is above 5 deg C",
+  "type": "hard",
+  "profile_field": "site_above_5c",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Is the site's average yearly temperature above 5 °C? (True almost everywhere in India except high-altitude Himalayan areas.)",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "5(d)",
+   "quote": "The annual average temperature of the site where manure would have decomposed anaerobically in the baseline is higher than 5 °C",
+   "doc": "CCTS_BMAG04.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 5(d)."
+ },
+ {
+  "condition_id": "CCTS_BMAG04.001_v1.0_X01",
+  "methodology_id": "CCTS_BMAG04.001_v1.0",
+  "text": "The project owner is a non-obligated entity: CCTS obligated entities cannot earn offset credits",
+  "type": "hard",
+  "profile_field": "ccts_obligated",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is the project owner an obligated entity under India's Carbon Credit Trading Scheme (a notified emissions-intensity target)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "2",
+   "quote": "It shall be the responsibility of the non-obligated entity",
+   "doc": "CCTS_BMAG04.001_v1.0",
+   "rule_doc": "CCTS notification S.O. 2825(E) as amended by S.O. 5369(E) (offset mechanism for non-obligated entities); not in Data/Eligibility"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "Each BM methodology para 2 (PDF p.3) assigns the project to 'the non-obligated entity'; the hard filter applies the same rule. Primary legal text (CCTS notification) is not in the repo."
+ },
+ {
+  "condition_id": "VCS_VM0047_v1.1_C01",
+  "methodology_id": "VCS_VM0047_v1.1",
+  "text": "On organic soils or wetlands, ARR must be combined with a wetland restoration methodology (multiple project activity design)",
+  "type": "soft",
+  "profile_field": "is_wetland",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is any of the land a wetland?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 8,
+   "para": "4.1(5)",
+   "quote": "Where projects take place on organic soils or wetlands, ARR activities are developed using a multiple project activity design",
+   "doc": "VCS_VM0047_v1.1"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.8 §4.1(5). Soft: wetland sites are not excluded but need a second (WRC) methodology."
+ },
+ {
+  "condition_id": "VCS_VM0047_v1.1_C02",
+  "methodology_id": "VCS_VM0047_v1.1",
+  "text": "Area-based approach: the land was not managed forest at any time in the 10 years before the start date",
+  "type": "hard",
+  "profile_field": "baseline",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "not_in",
+   "value": [
+    "forest"
+   ]
+  },
+  "question": {
+   "text": "What does the project replace, or what would have happened without it?",
+   "answer_type": "single_select",
+   "options": [
+    "grid",
+    "captive_fossil",
+    "vented",
+    "flared_partly",
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel",
+    "degraded",
+    "cropland",
+    "grassland",
+    "forest",
+    "old_equipment",
+    "coal",
+    "oil",
+    "grid_power"
+   ]
+  },
+  "source": {
+   "page": 12,
+   "para": "4.4.1(1)",
+   "quote": "The project occurs on lands that have met the definition of managed forest at any point in the 10-year period immediately preceding the project start date",
+   "doc": "VCS_VM0047_v1.1"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.12 §4.4.1(1). Baseline 'forest' (already forest) is the closest UI answer; non-managed forest would also fail here, which is conservative.",
+  "expert_check": "only land that was managed forest in the 10 years before the start date is excluded (VM0047 §4.4.1(1)); if the existing tree cover is not managed forest, the project may still qualify."
+ },
+ {
+  "condition_id": "VCS_VM0047_v1.1_C03",
+  "methodology_id": "VCS_VM0047_v1.1",
+  "text": "Clearing of pre-existing woody biomass involves no timber harvesting and does not degrade native ecosystems",
+  "type": "hard",
+  "profile_field": "forest_cleared_10y",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Was any natural forest cleared on this land in the last 10 years?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 12,
+   "para": "4.4.1(2)",
+   "quote": "Clearing of pre-existing woody biomass involves timber harvesting or results in degradation of native ecosystems",
+   "doc": "VCS_VM0047_v1.1"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.12 §4.4.1(2), mapped to forest_cleared_10y (natural forest cleared on the land). Chat 6 eval fix (15 Nov 2026): the question asks about any clearing in the last 10 years, which is broader than §4.4.1(2), so a 'yes' now asks for an expert check (VCS Standard v5.0 PDF p.59-60 §3.18.8).",
+  "expert_check": "VM0047 §4.4.1(2) excludes clearing by the project that involves timber harvesting or degrades native ecosystems. Clearing in the 10 years before the start is governed by VCS Standard v5.0 §3.18.8: allowed only if the degradation was unrelated to the project and not carried out or encouraged by the proponent or related parties. A consultant should check the land history."
+ },
+ {
+  "condition_id": "VCS_VM0033_v2.1_C01",
+  "methodology_id": "VCS_VM0033_v2.1",
+  "text": "Project restores tidal wetlands (mangroves, salt marsh, seagrass)",
+  "type": "hard",
+  "profile_field": "is_mangrove",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Is this a mangrove planting or restoration?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 10,
+   "para": "4(1)",
+   "quote": "Project activities which restore tidal wetlands (including seagrass meadows, per this methodology’s definition of tidal w etland) are eligible.",
+   "doc": "VCS_VM0033_v2.1"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.10 §4(1). In this tool's A/R sector the only tidal-wetland technology is mangrove restoration (is_mangrove), so plantations fail."
+ },
+ {
+  "condition_id": "VCS_VM0033_v2.1_C02",
+  "methodology_id": "VCS_VM0033_v2.1",
+  "text": "Pre-project land uses cannot be displaced elsewhere, or continue at a similar level, or (if displaced) no new wetland degradation for agriculture/aquaculture will follow",
+  "type": "hard",
+  "profile_field": "pre_project_use_displaced",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will any current use of the land (farming, grazing, aquaculture, fuelwood) have to move somewhere else because of the project?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 10,
+   "para": "4(3)",
+   "quote": "Is free of any land use that could be displaced outside the project area",
+   "doc": "VCS_VM0033_v2.1"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.10 §4(3)(a)-(b). Branch (c) (displacement allowed if it causes no new wetland degradation) is not modelled: conservative.",
+  "expert_check": "displacing current land uses is still allowed if it will not cause new wetland degradation for agriculture or aquaculture (VM0033 §4(3)(c)); this needs a site assessment."
+ },
+ {
+  "condition_id": "VCS_VM0033_v2.1_C03",
+  "methodology_id": "VCS_VM0033_v2.1",
+  "text": "No nitrogen fertilizer (chemical or manure) applied during the crediting period",
+  "type": "hard",
+  "profile_field": "nitrogen_fertilizer",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will chemical fertilizer or manure be applied in the project area?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 12,
+   "para": "not applicable (6)",
+   "quote": "Nitrogen fertilizer(s), such as chemical fertilizer or manure, are applied in the project area during the project crediting period",
+   "doc": "VCS_VM0033_v2.1"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.12, 'not applicable under the following conditions' item 6."
+ },
+ {
+  "condition_id": "VCS_VM0033_v2.1_C04",
+  "methodology_id": "VCS_VM0033_v2.1",
+  "text": "Project does not lower the water table (unless converting open water or reconnecting impounded water)",
+  "type": "hard",
+  "profile_field": "lowers_water_table",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will the project lower the water table on the site (e.g. drain it)? Reconnecting tidal flow or converting open water does not count.",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 12,
+   "para": "not applicable (3)",
+   "quote": "Project activities lower the water table",
+   "doc": "VCS_VM0033_v2.1"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.12 item 3. lowers_water_table asks exactly this; its question excludes tidal reconnection and open-water conversion."
+ },
+ {
+  "condition_id": "VCS_VM0033_v2.1_C05",
+  "methodology_id": "VCS_VM0033_v2.1",
+  "text": "Baseline activities do not include commercial forestry",
+  "type": "hard",
+  "profile_field": "baseline",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "not_in",
+   "value": [
+    "forest"
+   ]
+  },
+  "question": {
+   "text": "What does the project replace, or what would have happened without it?",
+   "answer_type": "single_select",
+   "options": [
+    "grid",
+    "captive_fossil",
+    "vented",
+    "flared_partly",
+    "uncovered_lagoon",
+    "liquid_slurry",
+    "solid_storage",
+    "daily_spread",
+    "burned_for_fuel",
+    "degraded",
+    "cropland",
+    "grassland",
+    "forest",
+    "old_equipment",
+    "coal",
+    "oil",
+    "grid_power"
+   ]
+  },
+  "source": {
+   "page": 12,
+   "para": "not applicable (2)",
+   "quote": "Baseline activities include commercial fores try.",
+   "doc": "VCS_VM0033_v2.1"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.12 item 2."
+ },
+ {
+  "condition_id": "CCTS_BMFR05.002_v1.0_C01",
+  "methodology_id": "CCTS_BMFR05.002_v1.0",
+  "text": "Land is not in the wetland category",
+  "type": "hard",
+  "profile_field": "is_wetland",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is any of the land a wetland?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "6, 7(a)",
+   "quote": "The land subject to the project activity does not fall in wetland category",
+   "doc": "CCTS_BMFR05.002_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 paras 6 and 7(a)."
+ },
+ {
+  "condition_id": "CCTS_BMFR05.002_v1.0_C02",
+  "methodology_id": "CCTS_BMFR05.002_v1.0",
+  "text": "Soil disturbance covers at most 10% of the area on organic soils or on land under baseline land-use/management practices (e.g. cropland, grassland)",
+  "type": "hard",
+  "profile_field": "soil_disturbance_pct",
+  "secondary_fields": [
+   "baseline"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "baseline",
+     "operator": "in",
+     "value": [
+      "degraded"
+     ]
+    },
+    {
+     "field": "soil_disturbance_pct",
+     "operator": "lte",
+     "value": 10
+    }
+   ]
+  },
+  "question": {
+   "text": "What share of the area (%) will be ploughed, dug or trenched for planting? (pits 0.5 m x 0.5 m at 3 m spacing = about 3%)",
+   "answer_type": "number",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "7(b)",
+   "quote": "Soil disturbance attributable to the project activity does not cover more than 10 per cent of area",
+   "doc": "CCTS_BMFR05.002_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 7(b)(i)-(ii) and fn 3 (pits 0.5 x 0.5 m at 3 m spacing = 2.78%). Degraded land not under management practices is exempt; organic soils are rare on degraded land and are not separately asked."
+ },
+ {
+  "condition_id": "CCTS_BMFR05.002_v1.0_X01",
+  "methodology_id": "CCTS_BMFR05.002_v1.0",
+  "text": "The project owner is a non-obligated entity: CCTS obligated entities cannot earn offset credits",
+  "type": "hard",
+  "profile_field": "ccts_obligated",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is the project owner an obligated entity under India's Carbon Credit Trading Scheme (a notified emissions-intensity target)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "2",
+   "quote": "It shall be the responsibility of the non-obligated entity",
+   "doc": "CCTS_BMFR05.002_v1.0",
+   "rule_doc": "CCTS notification S.O. 2825(E) as amended by S.O. 5369(E) (offset mechanism for non-obligated entities); not in Data/Eligibility"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "Each BM methodology para 2 (PDF p.3) assigns the project to 'the non-obligated entity'; the hard filter applies the same rule. Primary legal text (CCTS notification) is not in the repo."
+ },
+ {
+  "condition_id": "CCTS_BMFR05.001_v1.0_C01",
+  "methodology_id": "CCTS_BMFR05.001_v1.0",
+  "text": "Land is degraded mangrove habitat",
+  "type": "hard",
+  "profile_field": "is_mangrove",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Is this a mangrove planting or restoration?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "7(a)",
+   "quote": "The land subject to the project activity is degraded mangrove habitat",
+   "doc": "CCTS_BMFR05.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 7(a)."
+ },
+ {
+  "condition_id": "CCTS_BMFR05.001_v1.0_C02",
+  "methodology_id": "CCTS_BMFR05.001_v1.0",
+  "text": "More than 90% of the area is planted with mangrove species, or, if more than 10% is non-mangrove, the project does not alter hydrology of the site or connected wetlands",
+  "type": "hard",
+  "profile_field": "mangrove_share_pct",
+  "secondary_fields": [
+   "alters_hydrology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "mangrove_share_pct",
+     "operator": "gt",
+     "value": 90
+    },
+    {
+     "field": "alters_hydrology",
+     "operator": "is_false"
+    }
+   ]
+  },
+  "question": {
+   "text": "What share of the planted area (%) will be mangrove species?",
+   "answer_type": "number",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "7(b)",
+   "quote": "More than 90 per cent of the project area under the project scenario is planted with mangrove species.",
+   "doc": "CCTS_BMFR05.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 7(b): either branch satisfies it, hence any_of."
+ },
+ {
+  "condition_id": "CCTS_BMFR05.001_v1.0_C03",
+  "methodology_id": "CCTS_BMFR05.001_v1.0",
+  "text": "Soil disturbance covers at most 10% of the area",
+  "type": "hard",
+  "profile_field": "soil_disturbance_pct",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "lte",
+   "value": 10
+  },
+  "question": {
+   "text": "What share of the area (%) will be ploughed, dug or trenched for planting? (pits 0.5 m x 0.5 m at 3 m spacing = about 3%)",
+   "answer_type": "number",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "7(c)",
+   "quote": "Soil disturbance attributable to the A/R Indian Carbon Market (ICM) project activity does not cover more than 10 per cent of area.",
+   "doc": "CCTS_BMFR05.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 7(c)."
+ },
+ {
+  "condition_id": "CCTS_BMFR05.001_v1.0_X01",
+  "methodology_id": "CCTS_BMFR05.001_v1.0",
+  "text": "The project owner is a non-obligated entity: CCTS obligated entities cannot earn offset credits",
+  "type": "hard",
+  "profile_field": "ccts_obligated",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is the project owner an obligated entity under India's Carbon Credit Trading Scheme (a notified emissions-intensity target)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "2",
+   "quote": "It shall be the responsibility of the non-obligated entity",
+   "doc": "CCTS_BMFR05.001_v1.0",
+   "rule_doc": "CCTS notification S.O. 2825(E) as amended by S.O. 5369(E) (offset mechanism for non-obligated entities); not in Data/Eligibility"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "Each BM methodology para 2 (PDF p.3) assigns the project to 'the non-obligated entity'; the hard filter applies the same rule. Primary legal text (CCTS notification) is not in the repo."
+ },
+ {
+  "condition_id": "VCS_AMS-II.D_v13_C01",
+  "methodology_id": "VCS_AMS-II.D_v13",
+  "text": "Energy-efficiency measures at industrial facilities; projects earning credits primarily through fuel switching must use other methodologies (e.g. AMS-III.B, AMS-III.AN)",
+  "type": "hard",
+  "profile_field": "technology",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "not_in",
+   "value": [
+    "fuel_switch",
+    "renewable_heat"
+   ]
+  },
+  "question": {
+   "text": "What technology does the project use?",
+   "answer_type": "single_select",
+   "options": [
+    "solar_pv",
+    "wind_onshore",
+    "wind_offshore",
+    "geothermal",
+    "hydro",
+    "lfg_capture",
+    "household_biogas",
+    "farm_digester",
+    "centralised_digester",
+    "plantation",
+    "mangrove",
+    "efficient_equipment",
+    "fuel_switch",
+    "renewable_heat",
+    "waste_heat"
+   ]
+  },
+  "source": {
+   "page": 3,
+   "para": "2-3",
+   "quote": "The project activities that aim to earn emission reductions credit primarily through fuel switching",
+   "doc": "VCS_AMS-II.D_v13"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 paras 2-3. UI 'fuel_switch' (coal/oil to gas) and 'renewable_heat' (biomass boiler replacing coal) are primarily fuel switching, so they fail here."
+ },
+ {
+  "condition_id": "VCS_AMS-II.D_v13_C02",
+  "methodology_id": "VCS_AMS-II.D_v13",
+  "text": "Energy use of the project can be measured and recorded directly",
+  "type": "hard",
+  "profile_field": "energy_metered",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Can the energy use of the equipment be measured directly (meters, fuel records, steam flow)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "6",
+   "quote": "This category is applicable to project activities where it is possible to directly measure and record the energy use of the project activity wi thin the project boundary",
+   "doc": "VCS_AMS-II.D_v13"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 6."
+ },
+ {
+  "condition_id": "VCS_AMS-II.D_v13_C03",
+  "methodology_id": "VCS_AMS-II.D_v13",
+  "text": "Output and products stay equivalent to the baseline (same use, properties and quality)",
+  "type": "hard",
+  "profile_field": "same_output",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Will the plant make the same products, at the same or better quality, as before?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "9-10",
+   "quote": "shall be equivalent to the product(s) produced in the baseline",
+   "doc": "VCS_AMS-II.D_v13"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 paras 9-10."
+ },
+ {
+  "condition_id": "VCS_AMS-II.D_v13_C04",
+  "methodology_id": "VCS_AMS-II.D_v13",
+  "text": "Savings only from improved maintenance (cleaning, fixing leaks, lubricants) are not covered",
+  "type": "hard",
+  "profile_field": "maintenance_only",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Are the savings only from better maintenance (cleaning filters, fixing leaks), with no new equipment?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "14",
+   "quote": "The project activity that aims to achieve energy savings through improved maintenance practices",
+   "doc": "VCS_AMS-II.D_v13"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 14."
+ },
+ {
+  "condition_id": "VCS_AMS-II.D_v13_C05",
+  "methodology_id": "VCS_AMS-II.D_v13",
+  "text": "Aggregate savings at most 60 GWh(e) per year for electricity-based measures (180 GWh thermal fuel input for fossil-fuel measures)",
+  "type": "hard",
+  "profile_field": "mwh_saved",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "lte",
+   "value": 60000
+  },
+  "question": {
+   "text": "Expected electricity saved per year (MWh)?",
+   "answer_type": "number",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "16",
+   "quote": "may not exceed the equivalent of 60 GWh e per year for electr icity based energy efficient technologies",
+   "doc": "VCS_AMS-II.D_v13"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 16. Rule checks the electricity limit (mwh_saved is the UI size field for efficiency projects); the 180 GWh thermal limit for fuel-based measures is not modelled."
+ },
+ {
+  "condition_id": "VCS_AMS-II.D_v13_X01",
+  "methodology_id": "VCS_AMS-II.D_v13",
+  "text": "VCS Table 1 row 5: switching from a higher- to a lower-carbon fossil fuel (e.g. coal or oil to natural gas or LPG) is eligible only in LDCs, so not in India",
+  "type": "hard",
+  "profile_field": "fuel_to",
+  "secondary_fields": [
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "technology",
+     "operator": "in",
+     "value": [
+      "efficient_equipment",
+      "waste_heat"
+     ]
+    },
+    {
+     "field": "fuel_to",
+     "operator": "not_in",
+     "value": [
+      "natural_gas",
+      "lpg"
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "Which fuel are you switching to?",
+   "answer_type": "single_select",
+   "options": [
+    "natural_gas",
+    "renewable_biomass",
+    "lpg"
+   ]
+  },
+  "source": {
+   "doc": "VCS-Standard-v5.0",
+   "page": 10,
+   "para": "Table 1 row 5",
+   "quote": "Activities that involve switching from a higher to a lower carbon content fossil fuel to generate electricity and/or thermal energy"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "PDF p.10 Table 1 row 5: default eligibility 'Activities in LDCs'. Pure efficiency projects pass; a switch to natural gas or LPG fails."
+ },
+ {
+  "condition_id": "VCS_ACM0009_v5_C01",
+  "methodology_id": "VCS_ACM0009_v5",
+  "text": "Switch from coal or petroleum fuel to natural gas in heat-generating element processes",
+  "type": "hard",
+  "profile_field": "fuel_to",
+  "secondary_fields": [
+   "fuel_from"
+  ],
+  "rule": {
+   "operator": "all_of",
+   "value": [
+    {
+     "field": "fuel_from",
+     "operator": "in",
+     "value": [
+      "bituminous_coal",
+      "subbituminous_coal",
+      "lignite",
+      "diesel",
+      "fuel_oil",
+      "petcoke"
+     ]
+    },
+    {
+     "field": "fuel_to",
+     "operator": "in",
+     "value": [
+      "natural_gas"
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "Which fuel are you switching to?",
+   "answer_type": "single_select",
+   "options": [
+    "natural_gas",
+    "renewable_biomass",
+    "lpg"
+   ]
+  },
+  "source": {
+   "page": 4,
+   "para": "3",
+   "quote": "switch in one or several element processes from coal or petroleum fuel to natural gas",
+   "doc": "VCS_ACM0009_v5"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "VCS_ACM0009_v5_C02",
+  "methodology_id": "VCS_ACM0009_v5",
+  "text": "Regulations do not require natural gas or any other fuel in the element processes",
+  "type": "hard",
+  "profile_field": "legally_required",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is the project required by any law, regulation, court order or permit condition?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "3(c)",
+   "quote": "Regulations do not require the use of natural gas or any other fuel in the element processes",
+   "doc": "VCS_ACM0009_v5"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "VCS_ACM0009_v5_C03",
+  "methodology_id": "VCS_ACM0009_v5",
+  "text": "No increase in thermal output capacity or equipment lifetime during crediting",
+  "type": "hard",
+  "profile_field": "thermal_capacity_increase",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Will the switch increase the plant's heat output capacity or extend the equipment's life?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "3(d)",
+   "quote": "The project activity does not increase the capacity of thermal output or lifetime of the element processes during the crediting period",
+   "doc": "VCS_ACM0009_v5"
+  },
+  "review_status": "llm_draft",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)"
+ },
+ {
+  "condition_id": "VCS_ACM0009_v5_X01",
+  "methodology_id": "VCS_ACM0009_v5",
+  "text": "VCS Table 1 row 5: switching from a higher- to a lower-carbon fossil fuel (e.g. coal or oil to natural gas or LPG) is eligible only in LDCs, so not in India",
+  "type": "hard",
+  "profile_field": "fuel_to",
+  "secondary_fields": [
+   "technology"
+  ],
+  "rule": {
+   "operator": "any_of",
+   "value": [
+    {
+     "field": "technology",
+     "operator": "in",
+     "value": [
+      "efficient_equipment",
+      "waste_heat"
+     ]
+    },
+    {
+     "field": "fuel_to",
+     "operator": "not_in",
+     "value": [
+      "natural_gas",
+      "lpg"
+     ]
+    }
+   ]
+  },
+  "question": {
+   "text": "Which fuel are you switching to?",
+   "answer_type": "single_select",
+   "options": [
+    "natural_gas",
+    "renewable_biomass",
+    "lpg"
+   ]
+  },
+  "source": {
+   "doc": "VCS-Standard-v5.0",
+   "page": 10,
+   "para": "Table 1 row 5",
+   "quote": "Activities that involve switching from a higher to a lower carbon content fossil fuel to generate electricity and/or thermal energy"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "PDF p.10 Table 1 row 5: default eligibility 'Activities in LDCs'. Pure efficiency projects pass; a switch to natural gas or LPG fails."
+ },
+ {
+  "condition_id": "VCS_AMS-I.C_v22_C01",
+  "methodology_id": "VCS_AMS-I.C_v22",
+  "text": "Renewable energy supplies thermal energy that displaces fossil fuel (solar thermal, renewable biomass, etc.)",
+  "type": "hard",
+  "profile_field": "technology",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "renewable_heat"
+   ]
+  },
+  "question": {
+   "text": "What technology does the project use?",
+   "answer_type": "single_select",
+   "options": [
+    "solar_pv",
+    "wind_onshore",
+    "wind_offshore",
+    "geothermal",
+    "hydro",
+    "lfg_capture",
+    "household_biogas",
+    "farm_digester",
+    "centralised_digester",
+    "plantation",
+    "mangrove",
+    "efficient_equipment",
+    "fuel_switch",
+    "renewable_heat",
+    "waste_heat"
+   ]
+  },
+  "source": {
+   "page": 4,
+   "para": "2",
+   "quote": "This methodology comprises renewable energy technologies that supply users i.e. residential, industrial or commercial facilities with thermal energy that displaces fossil fuel use",
+   "doc": "VCS_AMS-I.C_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 2. Only the UI's 'renewable_heat' technology is in scope."
+ },
+ {
+  "condition_id": "VCS_AMS-I.C_v22_C02",
+  "methodology_id": "VCS_AMS-I.C_v22",
+  "text": "Total rated thermal capacity of the project equipment is at most 45 MW thermal",
+  "type": "hard",
+  "profile_field": "thermal_capacity_mwth",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "lte",
+   "value": 45
+  },
+  "question": {
+   "text": "Total rated heat output of the new equipment (MW thermal)?",
+   "answer_type": "number",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "7",
+   "quote": "The total installed/rated thermal energy generation capacity of the project equipment is equal to or less than 45 MW thermal",
+   "doc": "VCS_AMS-I.C_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 7 (co-fired and cogeneration limits in paras 8-9 are the same 45 MWth, with 1:3 for electricity)."
+ },
+ {
+  "condition_id": "VCS_AMS-I.C_v22_C03",
+  "methodology_id": "VCS_AMS-I.C_v22",
+  "text": "Solid biomass fuel (e.g. briquettes) is produced solely from renewable biomass",
+  "type": "hard",
+  "profile_field": "biomass_source",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "not_in",
+   "value": [
+    "non_renewable"
+   ]
+  },
+  "question": {
+   "text": "If the project burns biomass, where does it come from (crop residue, forest residue, a dedicated plantation)?",
+   "answer_type": "single_select",
+   "options": [
+    "agro_residue",
+    "forest_residue",
+    "dedicated_plantation",
+    "non_renewable",
+    "not_biomass"
+   ]
+  },
+  "source": {
+   "page": 5,
+   "para": "11",
+   "quote": "it shall be demonstrated that it has been produced using solely renewable biomass",
+   "doc": "VCS_AMS-I.C_v22"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 11. Crop/forest residues and plantation biomass count as renewable biomass here; VCS Table 1 row 4 (X01) separately limits residues for industrial heat."
+ },
+ {
+  "condition_id": "VCS_AMS-I.C_v22_X01",
+  "methodology_id": "VCS_AMS-I.C_v22",
+  "text": "VCS Table 1 row 4: electricity/heat for industrial use from non-renewable, agro-residue or forest-residue biomass is eligible only in LDCs, so not in India. Biogas, gasification, pyrolysis, biofuels and dedicated renewable biomass are not restricted",
+  "type": "hard",
+  "profile_field": "biomass_source",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "dedicated_plantation",
+    "not_biomass"
+   ]
+  },
+  "question": {
+   "text": "If the project burns biomass, where does it come from (crop residue, forest residue, a dedicated plantation)?",
+   "answer_type": "single_select",
+   "options": [
+    "agro_residue",
+    "forest_residue",
+    "dedicated_plantation",
+    "non_renewable",
+    "not_biomass"
+   ]
+  },
+  "source": {
+   "doc": "VCS-Standard-v5.0",
+   "page": 10,
+   "para": "Table 1 row 4",
+   "quote": "Generating electricity and/or thermal energy for industrial use from the combustion of non-renewable biomass, agro-residue biomass, or forest residue biomass"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "PDF p.10 Table 1 row 4: default eligibility 'Activities in LDCs'. Exempt uses (biogas, gasification, pyrolysis, biofuels...) are listed in the same row; dedicated plantation biomass is not named in the restriction."
+ },
+ {
+  "condition_id": "CCTS_BMIN02.001_v1.0_C01",
+  "methodology_id": "CCTS_BMIN02.001_v1.0",
+  "text": "Energy-efficiency measures at industrial, mining or mineral production facilities (fuel switching only as part of an efficiency measure)",
+  "type": "hard",
+  "profile_field": "technology",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "in",
+   "value": [
+    "efficient_equipment",
+    "waste_heat"
+   ]
+  },
+  "question": {
+   "text": "What technology does the project use?",
+   "answer_type": "single_select",
+   "options": [
+    "solar_pv",
+    "wind_onshore",
+    "wind_offshore",
+    "geothermal",
+    "hydro",
+    "lfg_capture",
+    "household_biogas",
+    "farm_digester",
+    "centralised_digester",
+    "plantation",
+    "mangrove",
+    "efficient_equipment",
+    "fuel_switch",
+    "renewable_heat",
+    "waste_heat"
+   ]
+  },
+  "source": {
+   "page": 3,
+   "para": "5-7",
+   "quote": "This methodology comprises any energy efficiency improvement measures implemented at a single or several industrial or mining and mineral production facilities",
+   "doc": "CCTS_BMIN02.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.3 paras 5-7: efficiency measures; fuel switching only as part of one. Pure fuel switch or renewable heat fails."
+ },
+ {
+  "condition_id": "CCTS_BMIN02.001_v1.0_C02",
+  "methodology_id": "CCTS_BMIN02.001_v1.0",
+  "text": "Energy use of the project can be measured and recorded directly",
+  "type": "hard",
+  "profile_field": "energy_metered",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Can the energy use of the equipment be measured directly (meters, fuel records, steam flow)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 4,
+   "para": "9",
+   "quote": "This category is applicable to project activities where it is possible to directly measure and record the energy use of the project activity within the project boundary",
+   "doc": "CCTS_BMIN02.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.4 para 9."
+ },
+ {
+  "condition_id": "CCTS_BMIN02.001_v1.0_C03",
+  "methodology_id": "CCTS_BMIN02.001_v1.0",
+  "text": "Output and products stay equivalent to the baseline",
+  "type": "hard",
+  "profile_field": "same_output",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_true"
+  },
+  "question": {
+   "text": "Will the plant make the same products, at the same or better quality, as before?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "12",
+   "quote": "shall be equivalent to the product(s) produced in the baseline",
+   "doc": "CCTS_BMIN02.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 paras 12-13."
+ },
+ {
+  "condition_id": "CCTS_BMIN02.001_v1.0_C04",
+  "methodology_id": "CCTS_BMIN02.001_v1.0",
+  "text": "Savings only from improved maintenance are not covered",
+  "type": "hard",
+  "profile_field": "maintenance_only",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Are the savings only from better maintenance (cleaning filters, fixing leaks), with no new equipment?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 5,
+   "para": "16",
+   "quote": "The project activity that aims to achieve energy savings through improved maintenance practices",
+   "doc": "CCTS_BMIN02.001_v1.0"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "p.5 para 16."
+ },
+ {
+  "condition_id": "CCTS_BMIN02.001_v1.0_X01",
+  "methodology_id": "CCTS_BMIN02.001_v1.0",
+  "text": "The project owner is a non-obligated entity: CCTS obligated entities cannot earn offset credits",
+  "type": "hard",
+  "profile_field": "ccts_obligated",
+  "secondary_fields": [],
+  "rule": {
+   "operator": "is_false"
+  },
+  "question": {
+   "text": "Is the project owner an obligated entity under India's Carbon Credit Trading Scheme (a notified emissions-intensity target)?",
+   "answer_type": "yes_no",
+   "options": []
+  },
+  "source": {
+   "page": 3,
+   "para": "2",
+   "quote": "It shall be the responsibility of the non-obligated entity",
+   "doc": "CCTS_BMIN02.001_v1.0",
+   "rule_doc": "CCTS notification S.O. 2825(E) as amended by S.O. 5369(E) (offset mechanism for non-obligated entities); not in Data/Eligibility"
+  },
+  "review_status": "reviewed",
+  "applies_if": "",
+  "inherits": null,
+  "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
+  "review_note": "Each BM methodology para 2 (PDF p.3) assigns the project to 'the non-obligated entity'; the hard filter applies the same rule. Primary legal text (CCTS notification) is not in the repo."
+ }
+]

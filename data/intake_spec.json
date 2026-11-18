@@ -1,0 +1,40 @@
+{
+ "description": "Fields implied by intake answers: set, never asked. Shared by the Python engine (engine/intake.py: app.py, evals/harness.py) and the TS engine (engine-ts/src/intake.ts). Copied to Data/Derived/intake_spec.json by `python -m engine.export_spec`.",
+ "rules": [
+  {
+   "sector": "ar",
+   "set": "is_mangrove",
+   "from": "technology",
+   "op": "eq",
+   "value": "mangrove",
+   "why": "A/R: a mangrove technology answers the mangrove and wetland questions"
+  },
+  {
+   "sector": "ar",
+   "set": "is_wetland",
+   "from": "technology",
+   "op": "eq",
+   "value": "mangrove",
+   "why": "A/R: a mangrove technology answers the mangrove and wetland questions"
+  },
+  {
+   "sector": "biogas_manure",
+   "set": "manure_baseline_system",
+   "from": "baseline",
+   "op": "copy",
+   "why": "Biogas: 'what happens today' is the same question as the manure baseline system"
+  },
+  {
+   "sector": "biogas_manure",
+   "set": "farm_scale",
+   "from": "technology",
+   "op": "map",
+   "value": {
+    "household_biogas": "household",
+    "centralised_digester": "centralised"
+   },
+   "otherwise": "keep",
+   "why": "Biogas: household and centralised technologies fix the farm scale; other technologies keep any earlier answer"
+  }
+ ]
+}

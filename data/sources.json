@@ -1,0 +1,178 @@
+{
+ "A6.4_Form_AC-001_India": {
+  "title": "India: Article 6.4 host Party activity list (UNFCCC form A6.4-FORM-AC-001)",
+  "url": "https://unfccc.int/sites/default/files/resource/A6.4_Form_AC-001_India.pdf",
+  "kind": "document",
+  "checked": "2026-11-12"
+ },
+ "CCTS_BMAG04.001_v1.0": {
+  "title": "BM AG04.001 v1.0",
+  "publisher": "CCTS",
+  "url": "https://beeindia.gov.in/sites/default/files/BM%20AG04.001.pdf",
+  "kind": "document",
+  "checked": "2026-11-12"
+ },
+ "CCTS_BMEN01.001_v1.0": {
+  "title": "BM EN01.001 v1.0",
+  "publisher": "CCTS",
+  "url": "https://beeindia.gov.in/methodologies_and_tools_under_offset_mechanism.php",
+  "kind": "list_page",
+  "checked": "2026-11-12",
+  "note": "No stable per-document URL confirmed; BEE's list of offset methodologies."
+ },
+ "CCTS_BMFR05.001_v1.0": {
+  "title": "BM FR05.001 v1.0",
+  "publisher": "CCTS",
+  "url": "https://beeindia.gov.in/sites/default/files/BM%20FR05.001.pdf",
+  "kind": "document",
+  "checked": "2026-11-12"
+ },
+ "CCTS_BMFR05.002_v1.0": {
+  "title": "BM FR05.002 v1.0",
+  "publisher": "CCTS",
+  "url": "https://beeindia.gov.in/sites/default/files/BM_FR05.002_Afforestation_and_reforestation_of_lands_except_wetlands.pdf",
+  "kind": "document",
+  "checked": "2026-11-12"
+ },
+ "CCTS_BMIN02.001_v1.0": {
+  "title": "BM IN02.001 v1.0",
+  "publisher": "CCTS",
+  "url": "https://beeindia.gov.in/sites/default/files/BM%20IN02.001.pdf",
+  "kind": "document",
+  "checked": "2026-11-19"
+ },
+ "CCTS_BMWA03.001_v1.0": {
+  "title": "BM WA03.001 v1.0",
+  "publisher": "CCTS",
+  "url": "https://beeindia.gov.in/sites/default/files/BM%20WA03.001.pdf",
+  "kind": "document",
+  "checked": "2026-11-12"
+ },
+ "CCTS_BMWA03.002_v1.0": {
+  "title": "BM WA03.002 v1.0",
+  "publisher": "CCTS",
+  "url": "https://beeindia.gov.in/sites/default/files/BM%20WA03.002.pdf",
+  "kind": "document",
+  "checked": "2026-11-12"
+ },
+ "GS Article 6.4/PACM methodologies page": {
+  "title": "GS Article 6.4/PACM methodologies page",
+  "url": "https://globalgoals.goldstandard.org/article-6-4-pacm-methodology/",
+  "kind": "page",
+  "checked": null
+ },
+ "GS_AWMS_v2.0": {
+  "title": "AWMS v2.0",
+  "publisher": "GoldStandard",
+  "url": "https://globalgoals.goldstandard.org/standards/433_V2.0_PAA-M400-10_AWMS.pdf",
+  "kind": "document",
+  "checked": "2026-11-12"
+ },
+ "PACM_A6.4-AMM-001_v01.0": {
+  "title": "A6.4-AMM-001 v01.0",
+  "publisher": "PACM",
+  "url": "https://unfccc.int/process-and-meetings/the-paris-agreement/article-6/article-64-pacm/mechanism-process/methodologies/a64-amm-001",
+  "kind": "page",
+  "checked": "2026-11-12"
+ },
+ "PACM_A6.4-AMM-003_v01.0": {
+  "title": "A6.4-AMM-003 v01.0",
+  "publisher": "PACM",
+  "url": "https://unfccc.int/sites/default/files/resource/A6.4-AMM-003_v01.0.pdf",
+  "kind": "document",
+  "checked": "2026-11-12"
+ },
+ "Requirements_PAA": {
+  "title": "Gold Standard PAA P&R 100-01 Requirements for Paris Agreement alignment v1.2",
+  "url": "https://globalgoals.goldstandard.org/119_paa_pr_100-01-requirements-paris-agreement-alignment/",
+  "kind": "page",
+  "checked": "2026-11-12"
+ },
+ "VCS-Standard-v5.0": {
+  "title": "VCS Standard v5.0 (Verra, 16 Dec 2025)",
+  "url": "https://verra.org/documents/vcs-standard-v5-0/",
+  "kind": "document",
+  "checked": "2026-11-19"
+ },
+ "VCS_ACM0001_v19": {
+  "title": "ACM0001 v19.0",
+  "publisher": "Verra",
+  "url": "https://verra.org/methodologies/acm0001-flaring-or-use-of-landfill-gas/",
+  "kind": "page",
+  "checked": "2026-11-12"
+ },
+ "VCS_ACM0002_v22": {
+  "title": "ACM0002 v22.0",
+  "publisher": "Verra",
+  "url": "https://verra.org/methodologies/acm0002-grid-connected-electricity-generation-from-renewable-sources/",
+  "kind": "page",
+  "checked": "2026-11-19"
+ },
+ "VCS_ACM0009_v5": {
+  "title": "ACM0009 v5.0",
+  "publisher": "Verra",
+  "url": "https://cdm.unfccc.int/methodologies/DB/CMUDOOMI7G7SYSDFXA75EIITKEVA4P/",
+  "kind": "page",
+  "checked": "2026-11-19"
+ },
+ "VCS_ACM0010_v9": {
+  "title": "ACM0010 v9.0",
+  "publisher": "Verra",
+  "url": "https://cdm.unfccc.int/methodologies/DB/MCHY5JYMOKXTQ2S0E8ICY3AS49725K",
+  "kind": "page",
+  "checked": "2026-11-12",
+  "note": "CDM methodology page; apply with Verra's clarifications."
+ },
+ "VCS_AMS-I.C_v22": {
+  "title": "AMS-I.C v22.0",
+  "publisher": "Verra",
+  "url": "https://cdm.unfccc.int/methodologies/SSCmethodologies/approved",
+  "kind": "list_page",
+  "checked": "2026-11-19",
+  "note": "CDM list names AMS-I.C Version 22.0."
+ },
+ "VCS_AMS-II.D_v13": {
+  "title": "AMS-II.D v13.0",
+  "publisher": "Verra",
+  "url": "https://cdm.unfccc.int/methodologies/SSCmethodologies/approved",
+  "kind": "list_page",
+  "checked": "2026-11-19",
+  "note": "CDM list names AMS-II.D Version 13.0."
+ },
+ "VCS_AMS-III.D_v22": {
+  "title": "AMS-III.D v22.0",
+  "publisher": "Verra",
+  "url": "https://cdm.unfccc.int/methodologies/DB/W8C1TROMAU16PYG1B3QDEEB9F5USHO",
+  "kind": "page",
+  "checked": "2026-11-12",
+  "note": "CDM methodology page; apply with Verra's clarifications."
+ },
+ "VCS_VM0033_v2.1": {
+  "title": "VM0033 v2.1",
+  "publisher": "Verra",
+  "url": "https://verra.org/documents/vm0033-methodology-for-tidal-wetland-and-seagrass-restoration-v2-1",
+  "kind": "document",
+  "checked": "2026-11-12"
+ },
+ "VCS_VM0047_v1.1": {
+  "title": "VM0047 v1.1",
+  "publisher": "Verra",
+  "url": "https://verra.org/methodologies/vm0047-afforestation-reforestation-and-revegetation-v1-1/",
+  "kind": "page",
+  "checked": "2026-11-19"
+ },
+ "VCS_VMR0016_v1.0": {
+  "title": "VMR0016 v1.0",
+  "publisher": "Verra",
+  "url": "https://verra.org/methodologies/vmr0016-flaring-or-use-of-landfill-gas-acm0001-revision-v1-0/",
+  "kind": "page",
+  "checked": "2026-11-12"
+ },
+ "VCS_VMR0017_v1.0": {
+  "title": "VMR0017 v1.0",
+  "publisher": "Verra",
+  "url": "https://verra.org/methodologies/vmr0017-grid-connected-electricity-generation-from-renewable-sources-acm0002-revision-v1-0/",
+  "kind": "page",
+  "checked": "2026-11-19"
+ }
+}

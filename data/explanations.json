@@ -1,0 +1,578 @@
+{
+ "VCS_VMR0017_v1.0": {
+  "plain": "Verra's revised methodology for grid-connected renewable power. It reopened Verra to solar and wind projects in India.",
+  "points": [
+   {
+    "text": "Solar PV, onshore and offshore wind and geothermal qualify in low-, lower-middle- and upper-middle-income countries. India is lower-middle income, so these qualify here; hydro is limited to least developed countries.",
+    "source": {
+     "doc": "VCS_VMR0017_v1.0",
+     "page": 5,
+     "para": "§4 Table 1",
+     "quote": "Low-, lower middle- , upper middle- income countries only"
+    }
+   },
+   {
+    "text": "All other conditions of the CDM parent ACM0002 still apply: the plant must be grid-connected, and new or upgraded plants must meet the reference-period and storage rules.",
+    "source": {
+     "doc": "VCS_ACM0002_v22",
+     "page": 4,
+     "para": "2",
+     "quote": "This methodology applies to grid-connected renewable energy generation project activities that include"
+    }
+   },
+   {
+    "text": "You must show regulatory surplus (the project is not required by law), plus an investment analysis and common-practice test.",
+    "source": {
+     "doc": "VCS_VMR0017_v1.0",
+     "page": 8,
+     "para": "36(a)",
+     "quote": "Regulatory surplus must be demonstrated in accordance with the rules and requirements regarding regulatory surplus"
+    }
+   }
+  ]
+ },
+ "CCTS_BMEN01.001_v1.0": {
+  "plain": "India's domestic (CCTS) methodology for grid-connected renewable power, adapted from CDM ACM0002.",
+  "points": [
+   {
+    "text": "Standalone grid-connected solar and onshore wind plants are excluded. They qualify only as hybrids with battery or pumped storage.",
+    "source": {
+     "doc": "CCTS_BMEN01.001_v1.0",
+     "page": 6,
+     "para": "9",
+     "quote": "Install a Greenfield power plant (excluding standalone grid-connected wind and solar power plants)"
+    }
+   },
+   {
+    "text": "Battery storage is allowed with any new plant, but with upgrades of existing plants only for solar PV or wind.",
+    "source": {
+     "doc": "CCTS_BMEN01.001_v1.0",
+     "page": 7,
+     "para": "Table 2",
+     "quote": "Combinations of renewable energy technologies and mode of BESS applicable for integration"
+    }
+   },
+   {
+    "text": "Only non-obligated entities can use the offset mechanism; companies with CCTS emission-intensity targets cannot.",
+    "source": {
+     "doc": "CCTS_BMEN01.001_v1.0",
+     "page": 3,
+     "para": "2",
+     "quote": "It shall be the responsibility of the non-obligated entity"
+    }
+   }
+  ]
+ },
+ "VCS_VMR0016_v1.0": {
+  "plain": "Verra's revised landfill gas methodology. It replaces ACM0001 and AMS-III.G for new Verra projects from 1 Dec 2026.",
+  "points": [
+   {
+    "text": "It applies every condition of the CDM parent ACM0001: the gas is flared or used for power, heat or gas supply, and landfill management must not be changed to make more gas.",
+    "source": {
+     "doc": "VCS_ACM0001_v19",
+     "page": 3,
+     "para": "3(c)",
+     "quote": "Flare the LFG and/or use the captured LFG in any (combination) of the following ways"
+    }
+   },
+   {
+    "text": "Small projects (power up to 10 MW, heat use, or flaring with carbon credits as the only income) can use a simpler positive list instead of an investment analysis.",
+    "source": {
+     "doc": "VCS_VMR0016_v1.0",
+     "page": 6,
+     "para": "7.1.2",
+     "quote": "landfill gas use for electricity generation with a total installed generation capacity that does not exceed 10 MW"
+    }
+   },
+   {
+    "text": "You must show regulatory surplus: the project is not required by law.",
+    "source": {
+     "doc": "VCS_VMR0016_v1.0",
+     "page": 6,
+     "para": "7.1.1",
+     "quote": "Where the project proponent demonstrates regulatory surplu s, proceed to Section 7.1.2. Otherwise, the project activity is not additional."
+    }
+   }
+  ]
+ },
+ "VCS_ACM0001_v19": {
+  "plain": "The CDM landfill gas methodology used under Verra. It is inactive for new Verra projects from 1 Dec 2026 (use VMR0016).",
+  "points": [
+   {
+    "text": "The project either installs a new gas capture system or upgrades one whose gas was only vented or flared.",
+    "source": {
+     "doc": "VCS_ACM0001_v19",
+     "page": 3,
+     "para": "3(b)",
+     "quote": "The captured LFG was vented or flared and not used prior to the implementation of the project activity"
+    }
+   },
+   {
+    "text": "The gas can be flared, or used for electricity, heat, the gas network, trucks or a pipeline.",
+    "source": {
+     "doc": "VCS_ACM0001_v19",
+     "page": 3,
+     "para": "3(c)",
+     "quote": "Flare the LFG and/or use the captured LFG in any (combination) of the following ways"
+    }
+   },
+   {
+    "text": "It cannot be used if landfill management is deliberately changed to increase methane.",
+    "source": {
+     "doc": "VCS_ACM0001_v19",
+     "page": 5,
+     "para": "5(b)",
+     "quote": "If the management of the SWDS in the project activity is deliberately changed during the crediting in order to in crease methane generation"
+    }
+   }
+  ]
+ },
+ "GS_A6.4-AMM-001_v01.0": {
+  "plain": "Gold Standard's use of the Paris Agreement (Article 6.4) landfill gas methodology, required for new GS landfill projects.",
+  "points": [
+   {
+    "text": "The gas must be collected only for flaring, power, heat, biomethane, trucks or a dedicated pipeline. Under Gold Standard, flaring alone is not enough: at least one energy use is needed.",
+    "source": {
+     "doc": "PACM_A6.4-AMM-001_v01.0",
+     "page": 7,
+     "para": "12",
+     "quote": "collect the LFG under the Article 6.4 activity exclusively for one or more of the following applications"
+    }
+   },
+   {
+    "text": "Upgrades qualify only where the captured gas was flared and not used before.",
+    "source": {
+     "doc": "PACM_A6.4-AMM-001_v01.0",
+     "page": 7,
+     "para": "11",
+     "quote": "where the captured LFG prior to the implementation of the Article 6.4 activity was flared and not used"
+    }
+   },
+   {
+    "text": "The project must not reduce organic waste that would otherwise be recycled.",
+    "source": {
+     "doc": "PACM_A6.4-AMM-001_v01.0",
+     "page": 8,
+     "para": "13",
+     "quote": "The mechanism methodology is only applicable if the project does not reduce the amount of organic waste that would be recycled in the absence of the Article 6.4 activity"
+    }
+   }
+  ]
+ },
+ "CCTS_BMWA03.002_v1.0": {
+  "plain": "India's domestic (CCTS) landfill gas methodology for larger projects, adapted from CDM ACM0001.",
+  "points": [
+   {
+    "text": "The gas can be flared or used for power, heat, the gas network, trucks or a pipeline.",
+    "source": {
+     "doc": "CCTS_BMWA03.002_v1.0",
+     "page": 4,
+     "para": "6(c)",
+     "quote": "Flare the LFG and/or use the captured LFG in any (combination) of the following ways"
+    }
+   },
+   {
+    "text": "Before the project, the landfill gas must have been released, or flared only to meet rules, contracts, safety or odour concerns.",
+    "source": {
+     "doc": "CCTS_BMWA03.002_v1.0",
+     "page": 5,
+     "para": "7(a)",
+     "quote": "Atmospheric release of the LFG or capture of LFG and destruction through flaring to comply with regulations or contractual requirements"
+    }
+   },
+   {
+    "text": "Only non-obligated entities can use the offset mechanism.",
+    "source": {
+     "doc": "CCTS_BMWA03.002_v1.0",
+     "page": 3,
+     "para": "2",
+     "quote": "It shall be the responsibility of the non-obligated entity"
+    }
+   }
+  ]
+ },
+ "CCTS_BMWA03.001_v1.0": {
+  "plain": "India's domestic (CCTS) landfill gas methodology for small projects, adapted from CDM AMS-III.G.",
+  "points": [
+   {
+    "text": "It covers capturing and burning methane from landfills.",
+    "source": {
+     "doc": "CCTS_BMWA03.001_v1.0",
+     "page": 3,
+     "para": "4",
+     "quote": "This methodology comprises measures to capture and combust methane from landfills"
+    }
+   },
+   {
+    "text": "It does not apply if the landfill is deliberately managed to produce more methane.",
+    "source": {
+     "doc": "CCTS_BMWA03.001_v1.0",
+     "page": 3,
+     "para": "6",
+     "quote": "This methodology is not applicable if the management of the solid waste disposal site (SWDS) in the project activity is deliberately changed in order to increase methane generation"
+    }
+   },
+   {
+    "text": "Only non-obligated entities can use the offset mechanism.",
+    "source": {
+     "doc": "CCTS_BMWA03.001_v1.0",
+     "page": 3,
+     "para": "2",
+     "quote": "It shall be the responsibility of the non-obligated entity"
+    }
+   }
+  ]
+ },
+ "VCS_AMS-III.D_v22": {
+  "plain": "Small-scale CDM methodology (used under Verra) for capturing methane from manure in farm or central digesters.",
+  "points": [
+   {
+    "text": "Animals must be kept confined, and manure must not be discharged into rivers or other water.",
+    "source": {
+     "doc": "VCS_AMS-III.D_v22",
+     "page": 3,
+     "para": "3(a)",
+     "quote": "The livestock population in the farm is managed under confined conditions"
+    }
+   },
+   {
+    "text": "Manure must currently sit in an anaerobic system (lagoon or slurry store) for more than 12 months, so dung cakes, solid storage or daily spreading do not qualify.",
+    "source": {
+     "doc": "VCS_AMS-III.D_v22",
+     "page": 3,
+     "para": "3(d)",
+     "quote": "the retention time of manure in the anaerobic management system is greater than 12 months"
+    }
+   },
+   {
+    "text": "Emission reductions are limited to 60,000 t CO2e a year.",
+    "source": {
+     "doc": "VCS_AMS-III.D_v22",
+     "page": 6,
+     "para": "9",
+     "quote": "Measures are limited to those that result in aggregate emission reductions of less than or equal to 60 kt CO2 equivalent annually"
+    }
+   }
+  ]
+ },
+ "VCS_ACM0010_v9": {
+  "plain": "Large-scale CDM methodology (used under Verra) for replacing anaerobic manure systems such as open lagoons with lower-emission systems.",
+  "points": [
+   {
+    "text": "It applies where an existing anaerobic manure system (open lagoon, slurry pit) is replaced. A new (greenfield) facility qualifies only if its baseline would be an uncovered anaerobic lagoon (p.9 para 16).",
+    "source": {
+     "doc": "VCS_ACM0010_v9",
+     "page": 4,
+     "para": "2",
+     "quote": "where the existing anaerobic manure treatment system is replaced by new] animal waste management systems"
+    }
+   },
+   {
+    "text": "If the current system is an uncovered lagoon, manure must stay there for at least 12 months.",
+    "source": {
+     "doc": "VCS_ACM0010_v9",
+     "page": 4,
+     "para": "3(e)",
+     "quote": "the retention time of the manure in the system should be at least 12 months"
+    }
+   },
+   {
+    "text": "Co-digestion with other organic waste is not allowed.",
+    "source": {
+     "doc": "VCS_ACM0010_v9",
+     "page": 5,
+     "para": "3(g)",
+     "quote": "does not involve co-digestion of manure with other organic wastes"
+    }
+   }
+  ]
+ },
+ "GS_AWMS_v2.0": {
+  "plain": "Gold Standard's Paris-aligned methodology for manure biogas at households, small farms and institutions, used for cooking or heating.",
+  "points": [
+   {
+    "text": "The manure must currently be handled in a way that rots without air (lagoons, liquid slurry, deep pits); solid storage and dry heaps generally don't qualify.",
+    "source": {
+     "doc": "GS_AWMS_v2.0",
+     "page": 8,
+     "para": "3.2.2",
+     "quote": "The methodology applies only to livestock manure managed under baseline conditions in systems that result in substantial anaerobic decomposition and methane generation"
+    }
+   },
+   {
+    "text": "Biogas used for cooking or heating is credited here; electricity or mechanical use is allowed only if another approved methodology quantifies it.",
+    "source": {
+     "doc": "GS_AWMS_v2.0",
+     "page": 9,
+     "para": "3.2.6.1",
+     "quote": "captured biogas shall be utilised for thermal energy applications"
+    }
+   },
+   {
+    "text": "Each thermal unit credited here must deliver less than 150 kW of heat.",
+    "source": {
+     "doc": "GS_AWMS_v2.0",
+     "page": 10,
+     "para": "3.2.6.3",
+     "quote": "the continuous useful energy output shall be less than 150kW thermal per unit"
+    }
+   }
+  ]
+ },
+ "CCTS_BMAG04.001_v1.0": {
+  "plain": "India's domestic (CCTS) methodology for household and small-farm biogas digesters.",
+  "points": [
+   {
+    "text": "Digesters must be at individual households or small farms; there is no CCTS route for large or central digesters today.",
+    "source": {
+     "doc": "CCTS_BMAG04.001_v1.0",
+     "page": 3,
+     "para": "5(a)",
+     "quote": "The domestic biogas digester, methane recovery and combustion systems are installed at individual households or small farms"
+    }
+   },
+   {
+    "text": "Credits only count the share of manure that would otherwise rot without air, so dung cakes or solid storage earn little.",
+    "source": {
+     "doc": "CCTS_BMAG04.001_v1.0",
+     "page": 4,
+     "para": "5(c)",
+     "quote": "This methodology is applicable only to the fraction of the manure which would decay anaerobically in the absence of the project activity"
+    }
+   },
+   {
+    "text": "Only non-obligated entities can use the offset mechanism.",
+    "source": {
+     "doc": "CCTS_BMAG04.001_v1.0",
+     "page": 3,
+     "para": "2",
+     "quote": "It shall be the responsibility of the non-obligated entity"
+    }
+   }
+  ]
+ },
+ "VCS_VM0047_v1.1": {
+  "plain": "Verra's methodology for afforestation, reforestation and revegetation (ARR). It uses a dynamic performance benchmark and is CCP-approved.",
+  "points": [
+   {
+    "text": "Land that was managed forest at any time in the 10 years before the start is excluded under the area-based approach.",
+    "source": {
+     "doc": "VCS_VM0047_v1.1",
+     "page": 12,
+     "para": "4.4.1(1)",
+     "quote": "The project occurs on lands that have met the definition of managed forest at any point in the 10-year period immediately preceding the project start date"
+    }
+   },
+   {
+    "text": "Clearing existing trees must not involve timber harvesting or degrade native ecosystems.",
+    "source": {
+     "doc": "VCS_VM0047_v1.1",
+     "page": 12,
+     "para": "4.4.1(2)",
+     "quote": "Clearing of pre-existing woody biomass involves timber harvesting or results in degradation of native ecosystems"
+    }
+   },
+   {
+    "text": "On wetlands or organic soils, ARR must be combined with a wetland restoration methodology.",
+    "source": {
+     "doc": "VCS_VM0047_v1.1",
+     "page": 8,
+     "para": "4.1(5)",
+     "quote": "Where projects take place on organic soils or wetlands, ARR activities are developed using a multiple project activity design"
+    }
+   }
+  ]
+ },
+ "VCS_VM0033_v2.1": {
+  "plain": "Verra's methodology for tidal wetland and seagrass restoration, which covers mangrove restoration.",
+  "points": [
+   {
+    "text": "Projects that restore tidal wetlands, including mangroves, are eligible.",
+    "source": {
+     "doc": "VCS_VM0033_v2.1",
+     "page": 10,
+     "para": "4(1)",
+     "quote": "Project activities which restore tidal wetlands (including seagrass meadows, per this methodology’s definition of tidal w etland) are eligible."
+    }
+   },
+   {
+    "text": "No fertilizer or manure may be applied during the crediting period.",
+    "source": {
+     "doc": "VCS_VM0033_v2.1",
+     "page": 12,
+     "para": "not applicable (6)",
+     "quote": "Nitrogen fertilizer(s), such as chemical fertilizer or manure, are applied in the project area during the project crediting period"
+    }
+   },
+   {
+    "text": "The project must not lower the water table (reconnecting tidal flow is fine).",
+    "source": {
+     "doc": "VCS_VM0033_v2.1",
+     "page": 12,
+     "para": "not applicable (3)",
+     "quote": "Project activities lower the water table"
+    }
+   }
+  ]
+ },
+ "CCTS_BMFR05.002_v1.0": {
+  "plain": "India's domestic (CCTS) methodology for afforestation and reforestation of land that is not wetland.",
+  "points": [
+   {
+    "text": "Wetland land is excluded; mangroves use BM FR05.001 instead.",
+    "source": {
+     "doc": "CCTS_BMFR05.002_v1.0",
+     "page": 3,
+     "para": "7(a)",
+     "quote": "The land subject to the project activity does not fall in wetland category"
+    }
+   },
+   {
+    "text": "On managed land or organic soils, soil disturbance such as ploughing or digging pits must stay within 10% of the area.",
+    "source": {
+     "doc": "CCTS_BMFR05.002_v1.0",
+     "page": 4,
+     "para": "7(b)",
+     "quote": "Soil disturbance attributable to the project activity does not cover more than 10 per cent of area"
+    }
+   },
+   {
+    "text": "Only non-obligated entities can use the offset mechanism.",
+    "source": {
+     "doc": "CCTS_BMFR05.002_v1.0",
+     "page": 3,
+     "para": "2",
+     "quote": "It shall be the responsibility of the non-obligated entity"
+    }
+   }
+  ]
+ },
+ "CCTS_BMFR05.001_v1.0": {
+  "plain": "India's domestic (CCTS) methodology for restoring degraded mangrove habitats.",
+  "points": [
+   {
+    "text": "The land must be degraded mangrove habitat.",
+    "source": {
+     "doc": "CCTS_BMFR05.001_v1.0",
+     "page": 4,
+     "para": "7(a)",
+     "quote": "The land subject to the project activity is degraded mangrove habitat"
+    }
+   },
+   {
+    "text": "More than 90% of the area must be planted with mangrove species, or else site hydrology must not be altered.",
+    "source": {
+     "doc": "CCTS_BMFR05.001_v1.0",
+     "page": 4,
+     "para": "7(b)",
+     "quote": "More than 90 per cent of the project area under the project scenario is planted with mangrove species."
+    }
+   },
+   {
+    "text": "Soil disturbance must stay within 10% of the area.",
+    "source": {
+     "doc": "CCTS_BMFR05.001_v1.0",
+     "page": 4,
+     "para": "7(c)",
+     "quote": "Soil disturbance attributable to the A/R Indian Carbon Market (ICM) project activity does not cover more than 10 per cent of area."
+    }
+   }
+  ]
+ },
+ "VCS_AMS-II.D_v13": {
+  "plain": "Small-scale CDM methodology (used under Verra) for energy efficiency, with any fuel switching only as part of it, at industrial facilities.",
+  "points": [
+   {
+    "text": "Projects that earn credits mainly by switching fuel must use other methodologies.",
+    "source": {
+     "doc": "VCS_AMS-II.D_v13",
+     "page": 3,
+     "para": "3",
+     "quote": "The project activities that aim to earn emission reductions credit primarily through fuel switching"
+    }
+   },
+   {
+    "text": "Electricity savings are capped at 60 GWh a year.",
+    "source": {
+     "doc": "VCS_AMS-II.D_v13",
+     "page": 5,
+     "para": "16",
+     "quote": "may not exceed the equivalent of 60 GWh e per year for electr icity based energy efficient technologies"
+    }
+   },
+   {
+    "text": "Under Verra's rules, switching from coal or oil to natural gas is allowed only in least developed countries, so not in India.",
+    "source": {
+     "doc": "VCS-Standard-v5.0",
+     "page": 10,
+     "para": "Table 1 row 5",
+     "quote": "Activities that involve switching from a higher to a lower carbon content fossil fuel to generate electricity and/or thermal energy"
+    }
+   }
+  ]
+ },
+ "VCS_AMS-I.C_v22": {
+  "plain": "Small-scale CDM methodology (used under Verra) for renewable heat, such as solar thermal or renewable biomass, that replaces fossil fuel.",
+  "points": [
+   {
+    "text": "It covers renewable energy that supplies heat and displaces fossil fuel use.",
+    "source": {
+     "doc": "VCS_AMS-I.C_v22",
+     "page": 4,
+     "para": "2",
+     "quote": "This methodology comprises renewable energy technologies that supply users i.e. residential, industrial or commercial facilities with thermal energy that displaces fossil fuel use"
+    }
+   },
+   {
+    "text": "Total heat capacity is capped at 45 MW thermal.",
+    "source": {
+     "doc": "VCS_AMS-I.C_v22",
+     "page": 5,
+     "para": "7",
+     "quote": "The total installed/rated thermal energy generation capacity of the project equipment is equal to or less than 45 MW thermal"
+    }
+   },
+   {
+    "text": "Under Verra's rules, industrial heat from crop-residue or forest-residue biomass is allowed only in least developed countries, so not in India; biogas and dedicated plantation biomass are not restricted.",
+    "source": {
+     "doc": "VCS-Standard-v5.0",
+     "page": 10,
+     "para": "Table 1 row 4",
+     "quote": "Generating electricity and/or thermal energy for industrial use from the combustion of non-renewable biomass, agro-residue biomass, or forest residue biomass"
+    }
+   }
+  ]
+ },
+ "CCTS_BMIN02.001_v1.0": {
+  "plain": "India's domestic (CCTS) methodology for industrial energy efficiency (efficient motors, pumps, boilers), adapted from CDM AMS-II.D.",
+  "points": [
+   {
+    "text": "It covers energy-efficiency measures at industrial, mining or mineral production facilities, with no 60 GWh size cap.",
+    "source": {
+     "doc": "CCTS_BMIN02.001_v1.0",
+     "page": 3,
+     "para": "5",
+     "quote": "This methodology comprises any energy efficiency improvement measures implemented at a single or several industrial or mining and mineral production facilities"
+    }
+   },
+   {
+    "text": "Savings that come only from better maintenance do not count.",
+    "source": {
+     "doc": "CCTS_BMIN02.001_v1.0",
+     "page": 5,
+     "para": "16",
+     "quote": "The project activity that aims to achieve energy savings through improved maintenance practices"
+    }
+   },
+   {
+    "text": "Only non-obligated entities can use the offset mechanism; obligated companies cannot.",
+    "source": {
+     "doc": "CCTS_BMIN02.001_v1.0",
+     "page": 3,
+     "para": "2",
+     "quote": "It shall be the responsibility of the non-obligated entity"
+    }
+   }
+  ]
+ }
+}

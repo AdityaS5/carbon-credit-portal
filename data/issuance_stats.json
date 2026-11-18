@@ -1,0 +1,326 @@
+{
+  "generated_at": "2026-11-15",
+  "filters": {
+    "country": "India",
+    "credit_start_since": 2016,
+    "min_n": 5
+  },
+  "rows": [
+    {
+      "level": "methodology",
+      "key": [
+        "GoldStandard",
+        "ACM0002"
+      ],
+      "n_projects": 52,
+      "n_issued": 52,
+      "start_to_first_issuance_months": {
+        "p25": 28.4,
+        "median": 38.8,
+        "p75": 49.2
+      },
+      "reg_to_first_issuance_months": null,
+      "share_not_issued_3y_after_registration": null
+    },
+    {
+      "level": "methodology",
+      "key": [
+        "GoldStandard",
+        "AMS-I.A"
+      ],
+      "n_projects": 20,
+      "n_issued": 20,
+      "start_to_first_issuance_months": {
+        "p25": 31.7,
+        "median": 33.9,
+        "p75": 50.2
+      },
+      "reg_to_first_issuance_months": null,
+      "share_not_issued_3y_after_registration": null
+    },
+    {
+      "level": "methodology",
+      "key": [
+        "GoldStandard",
+        "AMS-I.D"
+      ],
+      "n_projects": 15,
+      "n_issued": 15,
+      "start_to_first_issuance_months": {
+        "p25": 39.6,
+        "median": 47.1,
+        "p75": 50.4
+      },
+      "reg_to_first_issuance_months": null,
+      "share_not_issued_3y_after_registration": null
+    },
+    {
+      "level": "methodology",
+      "key": [
+        "GoldStandard",
+        "AMS-I.E"
+      ],
+      "n_projects": 13,
+      "n_issued": 13,
+      "start_to_first_issuance_months": {
+        "p25": 21.3,
+        "median": 27.1,
+        "p75": 29.9
+      },
+      "reg_to_first_issuance_months": null,
+      "share_not_issued_3y_after_registration": null
+    },
+    {
+      "level": "methodology",
+      "key": [
+        "GoldStandard",
+        "AMS-II.G"
+      ],
+      "n_projects": 31,
+      "n_issued": 31,
+      "start_to_first_issuance_months": {
+        "p25": 23.0,
+        "median": 35.8,
+        "p75": 35.8
+      },
+      "reg_to_first_issuance_months": null,
+      "share_not_issued_3y_after_registration": null
+    },
+    {
+      "level": "methodology",
+      "key": [
+        "Verra",
+        "ACM0002"
+      ],
+      "n_projects": 132,
+      "n_issued": 64,
+      "start_to_first_issuance_months": {
+        "p25": 24.3,
+        "median": 28.2,
+        "p75": 32.2
+      },
+      "reg_to_first_issuance_months": {
+        "p25": 0.6,
+        "median": 4.0,
+        "p75": 10.5
+      },
+      "share_not_issued_3y_after_registration": 0.03
+    },
+    {
+      "level": "methodology",
+      "key": [
+        "Verra",
+        "AMS-I.D"
+      ],
+      "n_projects": 81,
+      "n_issued": 11,
+      "start_to_first_issuance_months": {
+        "p25": 27.3,
+        "median": 39.5,
+        "p75": 46.2
+      },
+      "reg_to_first_issuance_months": {
+        "p25": 0.4,
+        "median": 3.4,
+        "p75": 11.0
+      },
+      "share_not_issued_3y_after_registration": 0.25
+    },
+    {
+      "level": "methodology",
+      "key": [
+        "Verra",
+        "AMS-I.E"
+      ],
+      "n_projects": 10,
+      "n_issued": 8,
+      "start_to_first_issuance_months": {
+        "p25": 30.0,
+        "median": 37.5,
+        "p75": 40.8
+      },
+      "reg_to_first_issuance_months": {
+        "p25": 0.7,
+        "median": 3.4,
+        "p75": 6.3
+      },
+      "share_not_issued_3y_after_registration": 0.0
+    },
+    {
+      "level": "methodology",
+      "key": [
+        "Verra",
+        "AMS-I.F"
+      ],
+      "n_projects": 34,
+      "n_issued": 6,
+      "start_to_first_issuance_months": {
+        "p25": 34.5,
+        "median": 40.9,
+        "p75": 43.2
+      },
+      "reg_to_first_issuance_months": {
+        "p25": 0.3,
+        "median": 8.5,
+        "p75": 10.2
+      },
+      "share_not_issued_3y_after_registration": 0.2
+    },
+    {
+      "level": "methodology",
+      "key": [
+        "Verra",
+        "AMS-II.C"
+      ],
+      "n_projects": 20,
+      "n_issued": 7,
+      "start_to_first_issuance_months": {
+        "p25": 20.7,
+        "median": 23.0,
+        "p75": 36.4
+      },
+      "reg_to_first_issuance_months": {
+        "p25": 2.6,
+        "median": 4.1,
+        "p75": 10.4
+      },
+      "share_not_issued_3y_after_registration": 0.22
+    },
+    {
+      "level": "methodology",
+      "key": [
+        "Verra",
+        "AR-ACM0003"
+      ],
+      "n_projects": 52,
+      "n_issued": 10,
+      "start_to_first_issuance_months": {
+        "p25": 76.4,
+        "median": 80.1,
+        "p75": 86.0
+      },
+      "reg_to_first_issuance_months": {
+        "p25": 0.2,
+        "median": 0.3,
+        "p75": 0.9
+      },
+      "share_not_issued_3y_after_registration": null
+    },
+    {
+      "level": "methodology",
+      "key": [
+        "Verra",
+        "VMR0006"
+      ],
+      "n_projects": 110,
+      "n_issued": 22,
+      "start_to_first_issuance_months": {
+        "p25": 20.0,
+        "median": 25.0,
+        "p75": 32.9
+      },
+      "reg_to_first_issuance_months": {
+        "p25": 0.3,
+        "median": 4.9,
+        "p75": 10.4
+      },
+      "share_not_issued_3y_after_registration": 0.14
+    },
+    {
+      "level": "sector",
+      "key": [
+        "GoldStandard",
+        "grid_re"
+      ],
+      "n_projects": 67,
+      "n_issued": 67,
+      "start_to_first_issuance_months": {
+        "p25": 30.6,
+        "median": 39.8,
+        "p75": 49.2
+      },
+      "reg_to_first_issuance_months": null,
+      "share_not_issued_3y_after_registration": null
+    },
+    {
+      "level": "sector",
+      "key": [
+        "Verra",
+        "ar"
+      ],
+      "n_projects": 135,
+      "n_issued": 10,
+      "start_to_first_issuance_months": {
+        "p25": 76.4,
+        "median": 80.1,
+        "p75": 86.0
+      },
+      "reg_to_first_issuance_months": {
+        "p25": 0.2,
+        "median": 0.3,
+        "p75": 0.9
+      },
+      "share_not_issued_3y_after_registration": null
+    },
+    {
+      "level": "sector",
+      "key": [
+        "Verra",
+        "grid_re"
+      ],
+      "n_projects": 236,
+      "n_issued": 75,
+      "start_to_first_issuance_months": {
+        "p25": 24.8,
+        "median": 28.5,
+        "p75": 38.7
+      },
+      "reg_to_first_issuance_months": {
+        "p25": 0.5,
+        "median": 3.5,
+        "p75": 10.6
+      },
+      "share_not_issued_3y_after_registration": 0.11
+    },
+    {
+      "level": "standard",
+      "key": [
+        "GoldStandard"
+      ],
+      "n_projects": 278,
+      "n_issued": 278,
+      "start_to_first_issuance_months": {
+        "p25": 24.6,
+        "median": 31.4,
+        "p75": 39.7
+      },
+      "reg_to_first_issuance_months": null,
+      "share_not_issued_3y_after_registration": null
+    },
+    {
+      "level": "standard",
+      "key": [
+        "Verra"
+      ],
+      "n_projects": 805,
+      "n_issued": 158,
+      "start_to_first_issuance_months": {
+        "p25": 25.2,
+        "median": 30.6,
+        "p75": 42.9
+      },
+      "reg_to_first_issuance_months": {
+        "p25": 0.5,
+        "median": 3.4,
+        "p75": 10.5
+      },
+      "share_not_issued_3y_after_registration": 0.13
+    }
+  ],
+  "sources": [
+    "Data/Registry/Projects.csv",
+    "Data/Registry/Issuances.csv",
+    "Data/Registry/GSF Registry Projects Export 2026-11-15.csv",
+    "Data/Registry/GSF Registry Credits Export 2026-11-15.csv"
+  ]
+}
