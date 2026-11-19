@@ -10,7 +10,7 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "parity": "node src/cli/parity.ts && node src/cli/calcParity.ts"
+    "parity": "node src/cli/parity.ts && node src/cli/parity.ts --cases ../evals/explore_handoff_cases.json --trace ../evals/explore_handoff_trace.json && node src/cli/calcParity.ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
