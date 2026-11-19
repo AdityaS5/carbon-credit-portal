@@ -4904,7 +4904,7 @@
    ]
   },
   "source": {
-   "page": 5,
+   "page": 6,
    "para": "11",
    "quote": "it shall be demonstrated that it has been produced using solely renewable biomass",
    "doc": "VCS_AMS-I.C_v22"
@@ -4913,7 +4913,7 @@
   "applies_if": "",
   "inherits": null,
   "extracted_by": "claude-opus-5-5 (chat 2 session; applicability sections read page by page)",
-  "review_note": "p.5 para 11. Crop/forest residues and plantation biomass count as renewable biomass here; VCS Table 1 row 4 (X01) separately limits residues for industrial heat."
+  "review_note": "p.6 para 11 (corrected 19 Nov from p.5: the paragraph is entirely on PDF p.6). Crop/forest residues and plantation biomass count as renewable biomass here; VCS Table 1 row 4 (X01) separately limits residues for industrial heat."
  },
  {
   "condition_id": "VCS_AMS-I.C_v22_X01",
