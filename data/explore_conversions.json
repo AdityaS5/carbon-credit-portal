@@ -1,0 +1,79 @@
+{
+ "source": "Hand-written (01_decisions_log, 18 Nov 'explore mode: conversion data and shortlist heuristic'; rules R1-R9 confirmed 19 Nov). Read by engine/explore.py and engine-ts/src/explore.ts.",
+ "url_note": "The 18 Nov draft with source URLs was given in a chat and is not in the repo; url is null where the decisions log names the source but not its link. Fill them before the explore page ships.",
+ "conversions": {
+  "solar_land_ha_per_mw": {"low": 1.21, "central": 1.62, "high": 2.02, "unit": "ha/MW", "status": "verify",
+   "source": "low: CTUIL advisory on benchmark cost and land (Sep 2026, sourced); central: HAREDA private solar park guidelines minimum (Feb 2022, verify); high: MNRE solar park scheme (verify)", "url": null},
+  "solar_capex_cr_per_mw": {"low": 3.5, "central": 3.5, "high": 5.04, "unit": "Rs crore/MW", "status": "verify",
+   "source": "CTUIL advisory (Sep 2026, sourced; a compliance benchmark, not a market price); high: CERC order of 26 Dec 2025, NGEL 40 MW Ayodhya, via trade press (verify)", "url": null},
+  "wind_capex_cr_per_mw": {"low": 6.0, "central": 6.0, "high": 6.0, "unit": "Rs crore/MW", "status": "sourced",
+   "source": "CTUIL advisory (Sep 2026)", "url": null},
+  "wind_turbine_mw": {"low": 2.7, "central": 2.7, "high": 2.7, "unit": "MW", "status": "verify",
+   "source": "Low end of an NTPC tender's 2.7-3.6 MW range", "url": null},
+  "farm_digester_cost_inr_per_m3d": {"low": 20000, "central": 30000, "high": 50000, "unit": "Rs per m3/day", "status": "assumption",
+   "source": "Scattered project examples (community/farm digesters, 25-2,500 m3/day)", "url": null},
+  "farm_digester_m3d": {"low": 25, "central": 25, "high": 2500, "unit": "m3/day", "status": "assumption",
+   "source": "Size range of community/farm digesters; low = smallest unit worth certifying", "url": null},
+  "dung_kg_per_m3d": {"low": 25, "central": 25, "high": 25, "unit": "kg fresh dung per m3/day", "status": "verify",
+   "source": "MNRE table via Vikaspedia (2010-11 prices)", "url": null},
+  "dung_kg_per_animal_day": {"low": 10, "central": 10, "high": 10, "unit": "kg/animal/day", "status": "verify",
+   "source": "MNRE table via Vikaspedia", "url": null},
+  "cbg_capex_cr_per_tpd": {"low": 5.0, "central": 5.5, "high": 6.0, "unit": "Rs crore per t/day CBG", "status": "verify",
+   "source": "CSE CBG blueprint (Jul 2026)", "url": null},
+  "dung_t_per_t_cbg": {"low": 50, "central": 50, "high": 50, "unit": "t dung per t CBG", "status": "verify",
+   "source": "CSE CBG blueprint (Jul 2026)", "url": null},
+  "ar_plantation_cost_inr_per_ha": {"low": 194000, "central": 238000, "high": 800000, "unit": "Rs/ha over 5 years", "status": "verify",
+   "source": "Odisha State CAMPA APO 2025-26 (1,000 and 1,600 plants/ha models); high: DTE, 4 Mar 2025 (Rs 5-8 lakh/ha range in a state draft)", "url": null},
+  "ar_mangrove_cost_inr_per_ha": {"low": 70000, "central": 429000, "high": 429000, "unit": "Rs/ha", "status": "verify",
+   "source": "Odisha State CAMPA APO 2025-26 (2,500 plants/ha incl. fishbone channels); low: Green India Mission 2014 norm (stale)", "url": null}
+ },
+ "minimum_units": {
+  "status": "assumption",
+  "source": "A size below these is unlikely to cover fixed registration and validation costs (18 Nov; revisit after the certification-cost step)",
+  "solar_mw": 1, "wind_turbines": 1, "farm_digester_m3d": 25, "cbg_tpd": 1, "ar_ha": 1
+ },
+ "budget_bands_cr": {"lt_50l": [0, 0.5], "50l_5cr": [0.5, 5], "5cr_50cr": [5, 50], "gt_50cr": [50, null]},
+ "timeline_max_months": {"lt_2y": 24, "2_4y": 48, "gt_4y": null, "flexible": null},
+ "no_ccts_route": {
+  "solar_pv": "BM EN01.001 p6 para 9 (standalone grid-connected solar excluded)",
+  "wind_onshore": "BM EN01.001 p6 para 9 (standalone onshore wind excluded)",
+  "centralised_digester": "BM AG04.001 p3 para 5(a) (households or small farms only)"
+ },
+ "sector_order": ["grid_re", "landfill_gas", "biogas_manure", "ar", "industrial_ee_fs"],
+ "blocker_priority": ["budget_below_min_unit", "forest_land_expert_check", "manure_baseline_unknown",
+  "wind_resource_study", "timeline_miss", "ccts_obligated_check", "land_rights_not_checked",
+  "additionality_grid_solar", "mangrove_no_estimate", "size_needs_site_data", "ccts_no_issuance_history"],
+ "blockers": {
+  "budget_below_min_unit": "Budget band is below the smallest unit worth certifying",
+  "forest_land_expert_check": "Land that was managed forest in the last 10 years needs an expert check under VM0047 (v1.1 p12, 4.4.1(1))",
+  "manure_baseline_unknown": "Depends on how manure is stored today: solid storage, daily spread or dung cakes fail AMS-III.D (p3 para 3(d)) and GS AWMS (3.2.2)",
+  "wind_resource_study": "Needs a wind resource study; land area says nothing about wind",
+  "timeline_miss": "Typical time to first credits is longer than the timeline you gave",
+  "ccts_obligated_check": "If the site's owner is a CCTS obligated entity, the CCTS offset route is closed (BM IN02.001 p3 para 2)",
+  "land_rights_not_checked": "Community or government land: this tool does not check who can sign for the land or the carbon rights",
+  "additionality_grid_solar": "Grid solar is often profitable without carbon revenue, so it is the most likely to fail additionality",
+  "mangrove_no_estimate": "No credits estimate for mangroves without site data",
+  "size_needs_site_data": "Credits can't be sized from land or budget; needs site data",
+  "ccts_no_issuance_history": "CCTS has no issuance history yet, so time to first credits is unknown"
+ },
+ "not_shortlisted": {
+  "no_grid_access": "No grid connection",
+  "no_ccts_route_for_buyer": "No open CCTS route for this technology, and the buyer is domestic",
+  "no_site_for_grid_re": "No land suited to ground-mounted solar, and the budget can't reach one wind turbine",
+  "no_landfill_access": "No landfill or waste contract",
+  "no_manure_access": "No livestock or manure supply",
+  "no_land": "No land",
+  "no_industrial_site": "No industrial site using fuel or power"
+ },
+ "access_fit": {
+  "grid_re": "Grid connection available",
+  "landfill_gas": "Has a landfill or waste contract",
+  "biogas_manure": "Has a manure supply",
+  "ar": "Has land for planting",
+  "industrial_ee_fs": "Has an industrial site using fuel or power"
+ },
+ "rank_basis": "Heuristic, not an eligibility check: access answered > budget reaches the smallest unit > typical time to first credits vs your timeline > fewer blockers > fixed sector order",
+ "caveat": "Projects that are profitable without carbon revenue may fail additionality, which this tool does not screen.",
+ "caveats": ["Shortlist is a heuristic, not an eligibility check. Pick an item to run the full check.",
+  "Projects that are profitable without carbon revenue may fail additionality, which this tool does not screen."]
+}

@@ -8,3 +8,4 @@ export { validateAnswer } from "./vocab.ts";
 export { offlineExplanation, cite } from "./explain.ts";
 export { impliedFields, intakeProfile } from "./intake.ts";
 export type * from "./types.ts";
+export { shortlist, intlMedian, type ExploreData, type ExploreSpec, type ExploreInputs } from "./explore.ts";
